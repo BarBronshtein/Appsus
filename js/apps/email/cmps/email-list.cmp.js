@@ -4,19 +4,25 @@ export default {
   <section class="email-list">
   <ul>
     <li v-for="email in emails" :key="email.id" class="email-preview-container">
-      <email-details v-if="" />
-     <router-link :to="'/email/'+email.id"><email-preview :email="email"/></router-link>
+      <router-link :to="'/email/'+email.id">
+        <email-preview @selectedEmail="toggleEmailDescription" :selectedEmail="selectedEmail" :email="email"/>
+      </router-link>
     </li>
   </ul>
   </section>
 `,
   data() {
     return {
-      selectedEmail: '',
+      selectedEmail: null,
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    toggleEmailDescription(email) {
+      if (this.selectedEmail === email) this.selectedEmail = null;
+      else this.selectedEmail = email;
+    },
+  },
   computed: {},
   components: { emailPreview },
   props: ['emails'],

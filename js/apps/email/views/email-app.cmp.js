@@ -7,23 +7,30 @@ export default {
   template: `
   <email-filter />
   <email-list :emails=emailsToShow />
-  <email-folder-list />
+  <email-folder-list :emails="emails"/>
 `,
   data() {
     return {
       emails: null,
-      selectedEmail: null,
     };
   },
   created() {
     emailService.query().then(emails => (this.emails = emails));
   },
   methods: {
-    removeEmail(id) {
-      emailService.remove(id).then(() => {
-        const idx = this.emails.findIndex(email => email.id === id);
-        this.emails.splice(idx, 1);
-      });
+    removeEmail(receivedEmail) {
+      if (!receivedEmail.trash) {
+        return emailService.sendToTrash(receivedEmail.id).then(updatedEmail => {
+          const idx = this.emails.findIndex(
+            email => email.id === updatedEmail.id
+          );
+          email.splice(idx, 1, updatedEmail);
+        });
+      } else
+        emailService.remove(id).then(() => {
+          const idx = this.emails.findIndex(email => email.id === id);
+          this.emails.splice(idx, 1);
+        });
     },
   },
   computed: {

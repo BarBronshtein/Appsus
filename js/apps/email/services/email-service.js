@@ -9,6 +9,8 @@ const email = {
   isRead: false,
   sentAt: 1551133930594,
   to: 'momo@momo.com',
+  isStarred: false,
+  isRead: true,
 };
 const email2 = {
   id: 'e102',
@@ -17,6 +19,8 @@ const email2 = {
   isRead: true,
   sentAt: 1551188930594,
   to: 'baba@momo.com',
+  isStarred: true,
+  isRead: false,
 };
 const email3 = {
   id: 'e103',
@@ -25,6 +29,8 @@ const email3 = {
   isRead: false,
   sentAt: 1551645930594,
   to: 'dada1@momo.com',
+  isStarred: false,
+  isRead: false,
 };
 
 const loggedinUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' };
