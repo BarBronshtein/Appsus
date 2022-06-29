@@ -1,0 +1,61 @@
+.sale-img {
+    width: 50px;
+    height: 50px;
+}
+
+.book-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-list>ul {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.book-preview-container {
+    cursor: pointer;
+    width: 250px;
+    padding: 1rem;
+    margin-inline-end: 1rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s;
+}
+
+.book-preview-container:hover {
+    outline: 3px solid #333;
+}
+
+.book-preview-container img {
+    width: 100%;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-form>* {
+    margin-bottom: 1rem;
+}
+
+.review-form> :nth-child(4) {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-form span {
+    margin-bottom: 1rem;
+}
