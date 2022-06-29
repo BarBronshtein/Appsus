@@ -4,13 +4,16 @@ export default {
   <section class="email-list">
   <ul>
     <li v-for="email in emails" :key="email.id" class="email-preview-container">
-      <book-preview :email="email"/>
+      <email-details v-if="" />
+     <router-link :to="'/email/'+email.id"><email-preview :email="email"/></router-link>
     </li>
   </ul>
   </section>
 `,
   data() {
-    return {};
+    return {
+      selectedEmail: '',
+    };
   },
   created() {},
   methods: {},

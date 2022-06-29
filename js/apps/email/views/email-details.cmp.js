@@ -4,7 +4,7 @@ export default {
   template: `
   <section v-if="email" class="email-details">
     <pre>{{email}}</pre>
-    <button>Back to list</button>
+    <router-link to="/email"><button>Back to list</button></router-link>
   </section>
 `,
   data() {
@@ -20,7 +20,7 @@ export default {
     removeEmail() {
       // TODO: use event bus to emit the event to email-app
     },
-    computed: {},
-    unmounted() {},
   },
+  computed: {},
+  unmounted() {},
 };

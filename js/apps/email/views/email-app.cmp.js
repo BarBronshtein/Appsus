@@ -1,15 +1,18 @@
 import { emailService } from '../services/email-service.js';
 import emailList from '../cmps/email-list.cmp.js';
+import emailFilter from '../cmps/email-filter.cmp.js';
+import emailFolderList from '../cmps/email-folder-list.cmp.js';
 export default {
+  name: 'email-app',
   template: `
   <email-filter />
-  <email-list :emails />
-  <email-floder-list />
+  <email-list :emails=emailsToShow />
+  <email-folder-list />
 `,
   data() {
     return {
       emails: null,
-      selectedEmailId: null,
+      selectedEmail: null,
     };
   },
   created() {
@@ -24,8 +27,10 @@ export default {
     },
   },
   computed: {
-    emailsToShow() {},
+    emailsToShow() {
+      return this.emails;
+    },
   },
-  components: { emailList },
+  components: { emailList, emailFilter, emailFolderList },
   unmounted() {},
 };
