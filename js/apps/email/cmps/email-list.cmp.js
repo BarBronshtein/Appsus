@@ -2,11 +2,11 @@ import emailPreview from '../cmps/email-preview.cmp.js';
 export default {
   template: `
   <section class="email-list">
-  <ul>
+  <ul class="clean-list">
     <li v-for="email in emails" :key="email.id" class="email-preview-container">
-      <router-link :to="'/email/'+email.id">
-        <email-preview @selectedEmail="toggleEmailDescription" :selectedEmail="selectedEmail" :email="email"/>
-      </router-link>
+      
+        <email-preview @selectedEmail="goToLink" :selectedEmail="selectedEmail" :email="email"/>
+      
     </li>
   </ul>
   </section>
@@ -21,6 +21,9 @@ export default {
     toggleEmailDescription(email) {
       if (this.selectedEmail === email) this.selectedEmail = null;
       else this.selectedEmail = email;
+    },
+    goToLink(email) {
+      this.$router.push('/email/' + email.id);
     },
   },
   computed: {},

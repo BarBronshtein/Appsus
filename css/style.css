@@ -12,12 +12,17 @@
 
 @import 'apps/books/book.css';
 @import 'apps/keep/keep.css';
-
+/* Email */
+@import 'apps/email/email-icons.css';
+@import 'apps/email/email-app.css';
+@import 'apps/email/email.folder-list.css';
+@import 'apps/email/email-preview.css';
+@import 'apps/email/email.compose.css';
 .img-container {
   margin-top: 2rem;
 }
 
-.img-container> :last-child {
+.img-container > :last-child {
   margin-inline-start: 1rem;
 }
 

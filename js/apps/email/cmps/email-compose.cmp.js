@@ -1,37 +1,47 @@
 export default {
   template: `
  <section class="email-compose">
-    <form @submit.prevent="sendEmail" class="email-compose-form">
+    <form @submit.prevent="composeEmail" class="email-compose-form">
         <label >
             <span>
                 to:
             </span>
-            <input v-model="sendTo.to"  type="email" class="email-form-input-to">
+            <input v-model="sendEmail.to"  type="email" class="email-form-input-to">
         </label>
         <label>
             <span>subject:
 
             </span>
-            <input type="text" max="15" v-model="senTo.subject" />
+            <input type="text" max v-model="sendEmail.subject">
         </label>
-        <textarea class="" v-model="sendTo.body" cols="30" rows="10">
+        <textarea class="" v-model="sendEmail.body" cols="30" rows="10">
         </textarea>
+        <button>Send</button>
     </form>
  </section>
 `,
   data() {
     return {
-      sendTo: {
+      sendEmail: {
         to: '',
         subject: '',
         body: '',
+        isRead: false,
+        isStarred: false,
       },
     };
   },
-  created() {},
+  created() {
+    // setInterval();
+  },
   methods: {
-    sendEmail() {
-      console.log(this.sendTo);
+    composeEmail() {
+      const newEmail = JSON.parse(JSON.stringify(this.sendEmail));
+      this.sendEmail.to = '';
+      this.sendEmail.body = '';
+      this.sendEmail.subject = '';
+      newEmail.sentAt = Date.now();
+      this.$emit('composedEmail', newEmail);
     },
   },
   computed: {},

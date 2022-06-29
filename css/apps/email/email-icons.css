@@ -1,0 +1,21 @@
+.email-icons {
+  position: relative;
+  right: 10vw;
+}
+
+.email-icon {
+  padding: 0.4rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.email-icon:hover {
+  background-color: #eee;
+}
+
+.email-star-grey {
+  color: grey;
+}
+.email-star-yellow {
+  color: yellow;
+}

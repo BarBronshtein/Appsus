@@ -1,0 +1,22 @@
+.email-preview {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.email-list > ul {
+  width: 100%;
+  text-align: center;
+}
+.email-list {
+  width: 100%;
+  display: flex;
+}
+
+.email-preview-container {
+  display: flex;
+  margin: 2rem 0;
+}
+
+.details {
+  flex: 1;
+}

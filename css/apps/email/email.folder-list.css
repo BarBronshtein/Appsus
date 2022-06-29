@@ -1,0 +1,24 @@
+.email-folder-list {
+  position: fixed;
+  background: #eee;
+  color: grey;
+  top: 120px;
+  left: 0;
+  height: 100vh;
+  margin-inline-end: 1rem;
+  width: 10vw;
+}
+
+.email-folder-list > a {
+  margin-bottom: 2rem;
+}
+
+.email-folder-list .btn.compose-btn {
+  margin-bottom: 0.8rem;
+  color: grey;
+}
+
+.email-folder-list > a {
+  display: flex;
+  justify-content: center;
+}
