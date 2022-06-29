@@ -1,7 +1,8 @@
 import noteTxt from '../cmps/note-txt.cmp.js'
 import noteImg from '../cmps/note-img.cmp.js';
-// import noteVideo from '../cmps/note-video.cmp.js';
+import noteVideo from '../cmps/note-video.cmp.js';
 import noteTodos from '../cmps/note-todos.cmp.js';
+
 
 export default {
   props: ['notes'],
@@ -9,7 +10,7 @@ export default {
   <section class="note-list">
     <div v-for="note in notes" :key="note.id" class="notes-container">
       <component :is="note.type"
-          :info="note.info"
+          :note="note"
           :style="note.style">
       </component>
     </div>
@@ -18,7 +19,7 @@ export default {
   components: {
     noteTxt,
     noteImg,
-    // noteVideo,
+    noteVideo,
     noteTodos,
   },
   data() {
@@ -29,5 +30,6 @@ export default {
       this.$emit('removed', id);
     },
   },
-  computed: {},
+  computed: {
+  },
 };

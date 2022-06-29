@@ -1,0 +1,13 @@
+.flex{
+    display: flex;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.hide{
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
