@@ -7,7 +7,7 @@ export default {
   @click="onPinNote"></p>
   <p class="change-note-clr fa-solid fa-palette"
   @click="onColorPicker">
-  <input class="hide-color-picker" ref="colorPicker" type="color" @input="changeBackgroundColor"></p>
+  <input class="hide-element" ref="colorPicker" type="color" @input="changeBackgroundColor"></p>
   <p class="duplicate-note fa-solid fa-clone"
   @click="onDuplicateNote"></p>
   <p class="delete-note fa-solid fa-trash-can"
