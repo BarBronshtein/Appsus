@@ -1,0 +1,23 @@
+.app-header {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 2rem;
+    padding: 2rem 0;
+}
+
+.app-header {
+    justify-content: space-around;
+}
+
+.main-navbar>* {
+    margin-inline-end: 1rem;
+    color: inherit;
+    padding: 1rem;
+}
+
+.main-navbar>*:hover {
+    border-bottom: 2px #81acd7 solid;
+}
