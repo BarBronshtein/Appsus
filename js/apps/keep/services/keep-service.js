@@ -14,7 +14,6 @@ export const keepService = {
 
 function query() {
   return storageService.query(NOTES_KEY);
-  // return utilService.loadFromStorage(NOTES_KEY);
 }
 
 function remove(noteId) {
@@ -31,12 +30,12 @@ function save(note) {
 }
 
 function getEmptyNote() {
-  // return { id: '', vendor: '', maxSpeed: 0 };
+  // return { id: '',  };
 }
 
 function _createNotes() {
   let notes = utilService.loadFromStorage(NOTES_KEY);
-  // if (!notes || !notes.length) {
+  if (!notes || !notes.length) {
     notes = [
       {
         id: 'n101',
@@ -52,6 +51,7 @@ function _createNotes() {
       {
         id: 'n102',
         type: 'note-img',
+        isPinned: false,
         info: {
           url: '../keep-images/nature.jpg',
           title: 'Bobi and Me',
@@ -63,6 +63,7 @@ function _createNotes() {
       {
         id: 'n103',
         type: 'note-todos',
+        isPinned: false,
         info: {
           label: 'Get my stuff together',
           todos: [
@@ -80,9 +81,9 @@ function _createNotes() {
           backgroundColor: '#02c45d',
         },
       },
-    ];
+    ]
     utilService.saveToStorage(NOTES_KEY, notes);
-  // }
+  }
 }
 
 function _createNote() {
