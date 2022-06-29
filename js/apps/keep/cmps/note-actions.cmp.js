@@ -1,4 +1,4 @@
-import { keepService } from '../services/keep-service.js';
+import { eventBus } from '../../../services/event-bus-service.js'
 
 export default {
     props: ['note'],
@@ -7,7 +7,7 @@ export default {
   @click="onPinNote"></p>
   <p class="change-note-clr fa-solid fa-palette"
   @click="onColorPicker">
-  <input class="hide" ref="colorPicker" type="color" @input="changeBackgroundColor"></p>
+  <input class="hide-color-picker" ref="colorPicker" type="color" @input="changeBackgroundColor"></p>
   <p class="duplicate-note fa-solid fa-clone"
   @click="onDuplicateNote"></p>
   <p class="delete-note fa-solid fa-trash-can"
@@ -21,23 +21,24 @@ export default {
     methods: {
         onPinNote() {
             this.note.isPinned = this.note.isPinned ? false : true
-            keepService.save(this.note)
+            eventBus.emit('update-note', this.note)
         },
         onColorPicker() {
             this.$refs.colorPicker.click()
         },
         changeBackgroundColor() {
             this.note.style.backgroundColor = this.$refs.colorPicker.value
-            keepService.save(this.note)
+            eventBus.emit('update-note', this.note)
         },
         onDuplicateNote() {
-            const currNoteId = this.note.id
-            this.note.id = ''
-            keepService.save(this.note)
-            this.note.id = currNoteId
+            // saving the note in a new variable
+            const newNote = { ...this.note }
+            //reseting the id so that the "save" func will save it as a new item
+            newNote.id = ''
+            eventBus.emit('save-new-note', this.note)
         },
-        onDeleteNote(){
-            keepService.remove(this.note.id)
+        onDeleteNote() {
+            eventBus.emit('remove-note', this.note)
         }
     },
     computed: {

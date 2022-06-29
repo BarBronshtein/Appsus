@@ -13,8 +13,10 @@ export default {
         @click="removeTodo(idx)"></button>
       </li>
     </ul>
-    <input type="text" placeholder="Type your task here...">
-    <note-actions  :note="note"/> 
+    <form @submit.prevent="addTodo" >
+    <input ref="todoInput" type="text" placeholder="Type your task here...">
+    </form>
+    <note-actions :note="note"/> 
   </article>
   `,
   data() {
@@ -27,7 +29,6 @@ export default {
       keepService.save(this.note)
     },
     removeTodo(todoIdx) {
-      console.log(todoIdx)
       this.note.info.todos.splice(todoIdx, 1)
       keepService.save(this.note)
     },
@@ -36,6 +37,14 @@ export default {
         cursor: 'pointer',
         textDecoration: todo.doneAt ? 'line-through' : 'none'
       }
+    },
+    addTodo() {
+      const newTodo = {
+        txt: this.$refs.todoInput.value,
+        doneAt: null,
+      }
+      this.note.info.todos.push(newTodo)
+      keepService.save(this.note)
     }
   },
   computed: {
