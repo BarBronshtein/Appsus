@@ -1,0 +1,8 @@
+.email-app {
+  position: relative;
+  left: 10vw;
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  align-items: center;
+}
