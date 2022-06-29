@@ -8,8 +8,8 @@ export const keepService = {
   query,
   remove,
   save,
-  getEmptyNote,
   get,
+  saveNotes,
 };
 
 function query() {
@@ -29,8 +29,8 @@ function save(note) {
   else return storageService.post(NOTES_KEY, note);
 }
 
-function getEmptyNote() {
-  // return { id: '',  };
+function saveNotes(notes){
+  utilService.saveToStorage(NOTES_KEY, notes);
 }
 
 function _createNotes() {
@@ -82,7 +82,7 @@ function _createNotes() {
         },
       },
     ]
-    utilService.saveToStorage(NOTES_KEY, notes);
+    utilService.saveToStorage(NOTES_KEY, notes)
   }
 }
 
