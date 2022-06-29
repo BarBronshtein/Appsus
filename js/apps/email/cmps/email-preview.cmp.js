@@ -1,8 +1,14 @@
 export default {
   template: `
- <section class="book-preview">
-    <pre>{{email}}</pre>
-    <span>{{email.subject}}</span>
+ <section class="email-preview">
+    <div class="email-preview-container">
+        <span>
+            {{email.to}}
+        </span>
+        <span>
+            {{email.subject}}
+        </span>
+    </div>
  </section>
 `,
   data() {
