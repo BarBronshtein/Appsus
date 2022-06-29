@@ -2,7 +2,7 @@ export default {
   template: `
      <header class="app-header">
     <div class="logo">
-        <h3>Books!</h3>
+        <h3 class="fa-brands fa-accusoft"> Books!</h3>
     </div>
       <ul class="main-navbar">
         <router-link router-link to="/">Home</router-link>
