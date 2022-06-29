@@ -22,7 +22,7 @@
      text-shadow: 0 0 10px rgb(122 126 74);
  }
 
- .hide-color-picker{
+ .hide-element{
     position: absolute;
     opacity: 0;
     pointer-events: none;

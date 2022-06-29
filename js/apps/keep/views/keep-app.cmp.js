@@ -10,7 +10,7 @@ export default {
     <section class="keep-app">
         <!-- <book-filter @filtered="setFilter"/> -->
 
-        <note-add @addBook="addSelectedBook"/>
+        <note-add/>
         <note-list :notes="notesToShow"/>
     </section>
     `,
