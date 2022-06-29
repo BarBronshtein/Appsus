@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       txt: '',
-      options: ['all', 'read', 'unread'],
+      options: ['all', 'read', 'unread', 'draft', 'sent', 'starred'],
     };
   },
   created() {},

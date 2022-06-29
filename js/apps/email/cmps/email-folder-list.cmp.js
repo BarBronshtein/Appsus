@@ -1,7 +1,11 @@
 export default {
   template: `
   <section class="email-folder-list">
+
     <router-link to="">
+        <p>
+            {{showUnreadEmailsCount}}
+        </p>
         <div class="btn compose-btn">
             Compose
         </div>
@@ -32,8 +36,18 @@ export default {
   data() {
     return {};
   },
-  created() {},
-  methods: {},
-  computed: {},
+
+  methods: {
+    a() {},
+  },
+  computed: {
+    showUnreadEmailsCount() {
+      return this.emails?.reduce((acc, email) => {
+        if (email.isRead) return acc + 1;
+        else return acc;
+      }, 0);
+    },
+  },
   unmounted() {},
+  props: ['emails'],
 };

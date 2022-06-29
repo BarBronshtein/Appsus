@@ -14,7 +14,10 @@ export default {
   },
   created() {
     const id = this.$route.params.emailId;
-    emailService.get(id).then(email => (this.email = email));
+    emailService.get(id).then(email => {
+      this.email = email;
+      this.email.isRead = true;
+    });
   },
   methods: {
     removeEmail() {
