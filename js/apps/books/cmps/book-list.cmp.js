@@ -1,5 +1,4 @@
 import bookPreview from '../cmps/book-preview.cmp.js';
-// import bookAdd from './book-add.cmp.js';
 export default {
   template: `
   <section class="book-list">

@@ -20,6 +20,9 @@ const routes = [
     path: '/book/:bookId',
     component: bookDetails,
   },
+  {
+    path: '/email',
+  },
 ];
 
 export const router = VueRouter.createRouter({
