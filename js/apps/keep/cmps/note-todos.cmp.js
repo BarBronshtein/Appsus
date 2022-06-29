@@ -4,7 +4,7 @@ export default {
     <h2>{{info.label}}</h2>
     <ul>
       <li v-for="todo in info.todos">
-        <p :style="lineStyle(todo)">{{todo.txt}}</p>
+        <!-- <p :style="lineStyle(todo)">{{todo.txt}}</p> -->
       </li>
     </ul>
 
@@ -17,10 +17,10 @@ export default {
   },
   methods:{},
   computed: {
-    lineStyle(todo) {
-      return {
-        textDecoration: todo.doneAt?'line-through':'none'
-      }
-    }
+    // lineStyle(todo) {
+    //   return {
+    //     textDecoration: todo.doneAt?'line-through':'none'
+    //   }
+    // }
   },
 };
