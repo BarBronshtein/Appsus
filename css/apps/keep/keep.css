@@ -61,3 +61,8 @@
     font-size: 1.1rem;
     width: 55%;
 }
+
+.note-container img{
+   width: 100%;
+   border-radius: 3px;
+}
