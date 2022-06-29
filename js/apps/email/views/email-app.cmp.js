@@ -8,7 +8,7 @@ export default {
   name: 'email-app',
   template: `
   <section class="email-app">
-      <email-filter />
+      <email-filter @filtered="setFilter" />
       <email-list :emails=emailsToShow />
       <email-folder-list @openModal="composeEmail" :emails="emails"/>
     </section>
@@ -22,6 +22,7 @@ export default {
       emails: null,
       showModal: false,
       unsubscribe: null,
+      filterBy: '',
     };
   },
   created() {
@@ -29,6 +30,9 @@ export default {
     this.unsubscribe = eventBus.on('remove-email', this.removeEmail);
   },
   methods: {
+    setFilter(filterBy) {
+      this.filterBy = filterBy;
+    },
     saveEmail(email) {
       emailService
         .save(email)
@@ -58,6 +62,20 @@ export default {
   },
   computed: {
     emailsToShow() {
+      console.log(this.filterBy);
+      const { txt, isRead, isStarred, isUnread } = this.filterBy;
+      const regex = new RegExp(txt, 'i');
+
+      if (txt)
+        return this.emails.filter(
+          ({ subject, to }) => regex.test(subject) || regex.test(to)
+        );
+      if (isRead) {
+      }
+      if (isStarred) {
+      }
+      if (isUnread) {
+      }
       return this.emails;
     },
   },
