@@ -36,7 +36,7 @@ function getEmptyNote() {
 
 function _createNotes() {
   let notes = utilService.loadFromStorage(NOTES_KEY);
-  if (!notes || !notes.length) {
+  // if (!notes || !notes.length) {
     notes = [
       {
         id: 'n101',
@@ -45,12 +45,15 @@ function _createNotes() {
         info: {
           txt: 'Fullstack Me Baby!',
         },
+        style: {
+          backgroundColor: '#25370d',
+        },
       },
       {
         id: 'n102',
         type: 'note-img',
         info: {
-          url: 'http://some-img/me',
+          url: '../keep-images/nature.jpg',
           title: 'Bobi and Me',
         },
         style: {
@@ -73,10 +76,13 @@ function _createNotes() {
             },
           ],
         },
+        style: {
+          backgroundColor: '#02c45d',
+        },
       },
     ];
     utilService.saveToStorage(NOTES_KEY, notes);
-  }
+  // }
 }
 
 function _createNote() {
