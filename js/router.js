@@ -35,6 +35,10 @@ const routes = [
     path: '/keep',
     component: keepApp,
   },
+  {
+    path: '/keep/:title',
+    component: keepApp,
+  },
 ];
 
 export const router = VueRouter.createRouter({

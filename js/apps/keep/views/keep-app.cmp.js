@@ -10,7 +10,7 @@ export default {
     <section class="keep-app">
       <note-add/>
         <note-filter @filtered="setFilter"/>
-      <note-list :notes="notesToShow" :/>
+      <note-list :notes="notesToShow"/>
     </section>
     `,
   components: {
@@ -54,9 +54,8 @@ export default {
 
       const regex = new RegExp(this.filterBy.title, 'i');
       const filterType = this.filterBy.type
-      return this.notes.filter(
-        ({ title, type }) =>
-          regex.test(title) && (type === filterType || filterType === '')
+      return this.notes.filter((note) =>
+        regex.test(note.info.title) && (note.type === filterType || filterType === '')
       )
 
     },

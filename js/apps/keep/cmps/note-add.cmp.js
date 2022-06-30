@@ -15,9 +15,12 @@ export default {
             @click="onAddVideoNote"></p>
             <p class="note-add-list fa-solid fa-list"
             @click="onAddListNote"></p>
+            <p class="note-add-audio fa-solid fa-file-audio"
+            @click="onAddAudioNote"></p>
         </div>
 
-        <input type="file" class="hide-element" ref="fileInput" @change="onImageSelect"/>
+        <input type="file" class="hide-element" ref="fileImageInput" @change="onImageSelect"/>
+        <input type="file" class="hide-element" ref="fileAudioInput" @change="onAudioSelect"/>
     </section>
 `,
     data() {
@@ -29,26 +32,30 @@ export default {
     },
     methods: {
         onAddTxtNote() {
+
+            const noteTitle = this.$refs.noteTitle.value
+            if (!noteTitle) return
+
             const newNote = {
                 id: '',
                 type: 'note-txt',
                 isPinned: false,
                 info: {
-                    title: this.$refs.noteTitle.value,
+                    title: noteTitle,
                 },
                 style: {
                     backgroundColor: '#eeeeee',
                 }
             }
+            // this.$router.push(newNote)
             eventBus.emit('save-new-note', newNote)
         },
         onAddImgNote() {
-            this.$refs.fileInput.click()
-            console.log("ffff");
+            this.$refs.fileImageInput.click()
         },
         onImageSelect(ev) {
             var reader = new FileReader()
-            const imgTitle=this.$refs.noteTitle.value
+            const imgTitle = this.$refs.noteTitle.value
             const img = new Image()
             reader.onload = function (event) {
                 img.src = event.target.result
@@ -69,15 +76,15 @@ export default {
             reader.readAsDataURL(ev.target.files[0])
         },
         onAddVideoNote() {
-            const vidUrl= prompt('Enter Youtube video adress')
-            if(!vidUrl) return
+            const vidUrl = prompt('Enter Youtube video adress')
+            if (!vidUrl) return
             const newNote = {
                 id: '',
                 type: 'note-video',
                 isPinned: false,
                 info: {
                     title: this.$refs.noteTitle.value,
-                    url:vidUrl.replace("watch?v=", "embed/"),
+                    url: vidUrl.replace("watch?v=", "embed/"),
                 },
                 style: {
                     backgroundColor: '#eeeeee',
@@ -100,13 +107,52 @@ export default {
             }
             eventBus.emit('save-new-note', newNote)
         },
-        onUploadPhoto(ev) {
-
-        }
+        onAddAudioNote() {
+            this.$refs.fileAudioInput.click()
+        },
+        onAudioSelect(ev) {
+            var reader = new FileReader()
+            const audioTitle = this.$refs.noteTitle.value
+            const audio = new Audio()
+            reader.onload = function (event) {
+                audio.src = event.target.result
+                const newNote = {
+                    id: '',
+                    type: 'note-audio',
+                    isPinned: false,
+                    info: {
+                        url: audio.src,
+                        title: audioTitle,
+                    },
+                    style: {
+                        backgroundColor: '#eeeeee',
+                    },
+                }
+                eventBus.emit('save-new-note', newNote)
+            }
+            reader.readAsDataURL(ev.target.files[0])
+        },
     },
     components: {
         // bookAddPreview
     },
     computed: {},
+    created() {
+        const queryParams = this.$route.query
+        console.log(queryParams);
+        if(!queryParams) return
+        const newNote = {
+            id: '',
+            type: 'note-txt',
+            isPinned: false,
+            info: {
+                title: queryParams.title,
+            },
+            style: {
+                backgroundColor: '#eeeeee',
+            }
+        }
+        eventBus.emit('save-new-note', newNote)
+      },
     unmounted() { },
 };

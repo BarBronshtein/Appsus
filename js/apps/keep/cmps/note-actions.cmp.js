@@ -10,6 +10,11 @@ export default {
   <input class="hide-element" ref="colorPicker" type="color" @input="changeBackgroundColor"></p>
   <p class="duplicate-note fa-solid fa-clone"
   @click="onDuplicateNote"></p>
+  
+  <router-link :to="'/email/inbox/'+noteDetail">
+    <p class="send-note fa-solid fa-paper-plane"></p>
+</router-link>
+
   <p class="delete-note fa-solid fa-trash-can"
   @click="onDeleteNote"></p>
     </article>
@@ -32,15 +37,20 @@ export default {
         },
         onDuplicateNote() {
             // saving the note in a new variable
-            const newNote = { ...this.note }
+            const newNote = JSON.parse(JSON.stringify(this.note))
             //reseting the id so that the "save" func will save it as a new item
             newNote.id = ''
-            eventBus.emit('save-new-note', this.note)
+            eventBus.emit('save-new-note', newNote)
         },
         onDeleteNote() {
             eventBus.emit('remove-note', this.note)
-        }
+        },
     },
     computed: {
+        noteDetail() {
+            const title = this.note.info.title
+            const txt = 'hello'
+            return '?' + new URLSearchParams({ title, txt }).toString()
+        }
     },
 };

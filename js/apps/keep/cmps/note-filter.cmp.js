@@ -15,8 +15,8 @@ export default {
                 title: '',
                 type: ''
             },
-            userOptions: ['All', 'Text', 'Image', 'Video', 'List'],
-            valueOptions: ['', 'note-txt', 'note-img', 'note-video', 'note-todos'],
+            userOptions: ['All', 'Text', 'Image', 'Video', 'List','Audio'],
+            valueOptions: ['', 'note-txt', 'note-img', 'note-video', 'note-todos', 'note-audio'],
         };
     },
     created() { },
