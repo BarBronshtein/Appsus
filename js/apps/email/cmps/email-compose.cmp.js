@@ -3,6 +3,9 @@ export default {
  <section class="email-compose">
     <form @submit.prevent="composeEmail" class="email-compose-form">
         <label >
+          <h5>
+              From: {{sendEmail.from}}
+          </h5>
             <span>
                 to:
             </span>
@@ -28,6 +31,8 @@ export default {
         body: '',
         isRead: false,
         isStarred: false,
+        isSent: true,
+        from: this.user.email,
       },
     };
   },
@@ -46,4 +51,5 @@ export default {
   },
   computed: {},
   unmounted() {},
+  props: ['user'],
 };

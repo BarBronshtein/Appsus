@@ -13,7 +13,7 @@ export default {
       <email-folder-list @openModal="composeEmail" :emails="emails"/>
     </section>
     <aside>
-        <email-compose @composedEmail="saveEmail" v-if="showModal" />
+        <email-compose :user="loggedUser" @composedEmail="saveEmail" v-if="showModal" />
     </aside>
   
 `,
@@ -23,13 +23,23 @@ export default {
       showModal: false,
       unsubscribe: null,
       filterBy: '',
+      sortBy: '',
+      loggedUser: null,
     };
   },
   created() {
+    emailService
+      .queryUser()
+      .then((user) => (this.loggedUser = user));
+
     emailService.query().then(emails => (this.emails = emails));
+
     this.unsubscribe = eventBus.on('remove-email', this.removeEmail);
   },
   methods: {
+    setSort(sortBy) {
+      this.sortBy = sortBy;
+    },
     setFilter(filterBy) {
       this.filterBy = filterBy;
     },
@@ -62,21 +72,30 @@ export default {
   },
   computed: {
     emailsToShow() {
-      console.log(this.filterBy);
-      const { txt, isRead, isStarred, isUnread } = this.filterBy;
+      const { txt, status } = this.filterBy;
       const regex = new RegExp(txt, 'i');
-
+      let filteredEmails = this.emails;
       if (txt)
-        return this.emails.filter(
+        filteredEmails = filteredEmails.filter(
           ({ subject, to }) => regex.test(subject) || regex.test(to)
         );
-      if (isRead) {
-      }
-      if (isStarred) {
-      }
-      if (isUnread) {
-      }
-      return this.emails;
+      if (status === 'read')
+        filteredEmails = filteredEmails.filter(email => email.isRead);
+      if (status === 'unread')
+        filteredEmails = filteredEmails.filter(email => !email.isRead);
+      if (status === 'starred')
+        filteredEmails = filteredEmails.filter(email => email.isStarred);
+      if (status === 'sent')
+        filteredEmails = filteredEmails.filter(email => email.isSent);
+      if (status === 'unstarred')
+        filteredEmails = filteredEmails.filter(email => !email.isStarred);
+      if (this.sortBy === 'date')
+        filteredEmails = filteredEmails.sort((a, b) => a.sentAt - b.sentAt);
+      if (this.sortBy === 'title')
+        filteredEmails = filteredEmails.sort((a, b) =>
+          a.subject.localeCompare(b.subject)
+        );
+      return filteredEmails;
     },
   },
   components: {
