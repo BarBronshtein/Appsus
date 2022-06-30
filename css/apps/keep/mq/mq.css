@@ -1,0 +1,25 @@
+/* MEDIUM */
+@media (max-width: 1140px) {
+    /* .note-list {
+        column-count: 3;
+        column-gap: 10px;
+    } */
+}
+
+/* SMALL */
+@media (max-width: 970px) {
+    .note-list {
+        width: 615px;
+        column-count: 2;
+        /* column-gap: 10px; */
+    }
+}
+
+/* MOBILE */
+@media (max-width: 660px) {
+    .note-list {
+        width: 300px;
+        column-count: 1;
+        column-gap: 10px;
+    }
+}

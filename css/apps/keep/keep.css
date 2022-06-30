@@ -1,68 +1,24 @@
-.note-container{
-    border-radius: 5px;
-    padding: 20px;
-    margin: 10px;
-    width: 400px;
-    box-shadow: 0 0 5px 0px rgb(122, 122, 122);
-    /* box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%); */
-}
-
-.note-actions-container{
-   text-align: end;
-}
-
-.note-actions-container p{
-    margin:20px 10px 0 30px;
-    font-size: 1.3rem;
- }
-
- .note-actions-container p:hover{
-     transition: .1s;
-     color: aliceblue;
-     text-shadow: 0 0 10px rgb(122 126 74);
- }
-
- .hide-element{
+ .hide-element {
     position: absolute;
     opacity: 0;
     pointer-events: none;
-}
+ }
 
- .note-add-container{
-    align-items: center;
-    width: 600px;
-    line-height: 2rem;
+ .note-list {
+    column-count: 3;
+    column-gap: 10px;
+    width: 930px;
     margin: auto;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 7px 0 rgb(122, 122, 122),inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%);
+    transition: .3s;
  }
 
- .note-add-options{
-    display: flex;
-    align-items: center;
+ .list-title {
+   color: #5f6368;
+   letter-spacing: .07272727em;
+   font-family: Roboto,Arial,sans-serif;
+   font-size: .6875rem;
+   font-weight: 500;
+   line-height: 1rem;
+   text-transform: uppercase;
+   margin: 32px 32px 8px;
  }
-
- .note-add-options p{
-    margin:0 10px 0 20px;
-    color: rgb(99, 99, 99);
-    font-size: 1.3rem;
- }
- 
- .note-add-options p:hover{
-    transition: .1s;
-    color: black;
-    text-shadow: 0 0 3px rgb(0, 0, 0);
-}
-
-.note-add-container input{
-    border:none;
-    padding-inline-start: 5px;
-    font-size: 1.1rem;
-    width: 55%;
-}
-
-.note-container img{
-   width: 100%;
-   border-radius: 3px;
-}

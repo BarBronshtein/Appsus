@@ -3,7 +3,7 @@ import noteActions from "./note-actions.cmp.js";
 export default {
   props: ['note'],
   template: `<article class="note-container">
-    <h3>{{note.info.txt}}</h3>
+    <h2>{{note.info.txt}}</h2>
     <note-actions :note="note"/>
   </article>
   `,
