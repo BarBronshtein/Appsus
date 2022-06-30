@@ -20,6 +20,8 @@ export default {
         <i @click="removeEmail" class="fa-solid fa-trash-can email-icon"></i>
         <i @click="restoreEmail" v-if="email.isTrash" class="fa-solid fa-trash-arrow-up email-icon"></i>
         <i class="fa-solid fa-reply email-icon" @click="$emit('reply',email)"></i>
+        <router-link :to="sendToNote" class="fa-solid fa-paper-plane email-icon"></router-link> 
+
         </div>
         <!-- <email-partially-open v-if="selectedEmail===email" :email="selectedEmail"/> -->
  </section>
@@ -54,6 +56,16 @@ export default {
     },
     showStarred() {
       return this.email.isStarred ? 'email-star-yellow' : 'email-star-grey';
+    },
+    sendToNote() {
+      return (
+        `/keep/` +
+        '?' +
+        new URLSearchParams({
+          title: this.email.subject,
+          txt: this.email.body,
+        }).toString()
+      );
     },
   },
   unmounted() {},
