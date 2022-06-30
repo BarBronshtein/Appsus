@@ -10,16 +10,7 @@ export default {
   data() {
     return {
       filterBy: { txt: '', status: 'all' },
-      options: [
-        'all',
-        'read',
-        'unread',
-        'draft',
-        'sent',
-        'starred',
-        'unstarred',
-        'sent',
-      ],
+      options: ['all', 'read', 'unread', 'starred', 'unstarred'],
     };
   },
   created() {},

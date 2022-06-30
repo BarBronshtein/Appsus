@@ -7,27 +7,22 @@ export default {
             <a class="flex justify-center text-align-c unread-emails">
             Unread emails:{{showUnreadEmailsCount}}
             </a>
-       <router-link to="">
+       <router-link to="/email/#inbox">
             <div class="btn inbox-filter-list">
                 Inbox
             </div>
        </router-link>
-       <router-link to="">
-            <div class="btn starred-filter-list">
-                Starred
-            </div>
-        </router-link>
-        <router-link to="">
+        <router-link to="/email/#trash">
             <div class="btn trash-filter-list">
                 Trash
             </div>
         </router-link>
-        <router-link to="">
+        <router-link to="/email/#sent">
             <div class="btn sent-filter-list">
                 Sent
             </div>
         </router-link>
-        <router-link to="">
+        <router-link to="/email/#draft">
             <div class="btn draft-filter-list">
                 Draft
             </div>
