@@ -8,8 +8,8 @@ export default {
   name: 'email-app',
   template: `
   <section class="email-app">
-      <email-filter @filtered="setFilter" />
-      <email-list :emails=emailsToShow />
+      <email-filter v-if="" @filtered="setFilter" />
+      <email-list v-if="" :emails=emailsToShow />
       <email-folder-list @openModal="toggleForm" :emails="emails"/>
     </section>
     <aside>
@@ -132,10 +132,12 @@ export default {
     this.unsubscribe();
   },
   watch: {
-    '$route.hash': {
+    $route: {
       handler() {
-        const hash = this.$route.hash;
-        return (this.filterBy.status = hash.slice(1));
+        const {
+          params: { status },
+        } = this.$route;
+        return (this.filterBy.status = status);
       },
       immediate: true,
     },

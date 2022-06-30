@@ -7,30 +7,18 @@ export default {
             <a class="flex justify-center text-align-c unread-emails">
             Unread emails:{{showUnreadEmailsCount}}
             </a>
-       <router-link to="/email/#inbox">
-            <div class="btn inbox-filter-list">
-                Inbox
+       <router-link v-for="(opt,i) in options" :key="i" :to="'/email/'+opt">
+            <div class="btn">
+                {{opt.replace(opt[0],opt[0].toUpperCase())}}
             </div>
        </router-link>
-        <router-link to="/email/#trash">
-            <div class="btn trash-filter-list">
-                Trash
-            </div>
-        </router-link>
-        <router-link to="/email/#sent">
-            <div class="btn sent-filter-list">
-                Sent
-            </div>
-        </router-link>
-        <router-link to="/email/#draft">
-            <div class="btn draft-filter-list">
-                Draft
-            </div>
-        </router-link>
+        
   </section>
 `,
   data() {
-    return {};
+    return {
+      options: ['inbox', 'sent', 'trash', 'draft'],
+    };
   },
 
   methods: {
