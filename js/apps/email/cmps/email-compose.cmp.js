@@ -29,9 +29,9 @@ export default {
   data() {
     return {
       sendEmail: {
-        to: '',
-        subject: '',
-        body: '',
+        to: this.email?.to || '',
+        subject: this.email?.subject || '',
+        body: this.email?.body || '',
         isRead: false,
         isStarred: false,
         status: 'sent',
@@ -68,5 +68,5 @@ export default {
     clearInterval(this.interval);
     this.interval = '';
   },
-  props: ['user'],
+  props: ['user', 'email'],
 };

@@ -19,7 +19,7 @@ export default {
         <i @click="toggleRead" :class="[showRead,'email-icon']"></i>
         <i @click="removeEmail" class="fa-solid fa-trash-can email-icon"></i>
         <i @click="restoreEmail" v-if="email.isTrash" class="fa-solid fa-trash-arrow-up email-icon"></i>
-        <i class="fa-solid fa-reply email-icon"></i>
+        <i class="fa-solid fa-reply email-icon" @click="$emit('reply',email)"></i>
         </div>
         <!-- <email-partially-open v-if="selectedEmail===email" :email="selectedEmail"/> -->
  </section>

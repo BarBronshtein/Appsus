@@ -10,12 +10,12 @@ export default {
   template: `
   <section class="email-app">
       <email-filter v-if="!routeEmailId" @filtered="setFilter" />
-      <email-list v-if="!routeEmailId" :emails=emailsToShow />
+      <email-list @reply="replyToEmail" v-if="!routeEmailId" :emails=emailsToShow />
       <email-folder-list @openModal="toggleForm" :emails="emails"/>
       <email-details @markAsRead="updateEmails" v-if="routeEmailId"/>
     </section>
     <aside>
-        <email-compose  @closeForm="closeModal" :user="loggedUser" @saveAsDraft="saveEmail" @composedEmail="saveEmail" v-if="showModal" />
+        <email-compose :email="email"  @closeForm="closeModal" :user="loggedUser" @saveAsDraft="saveEmail" @composedEmail="saveEmail" v-if="showModal" />
     </aside>
   
 `,
@@ -28,6 +28,7 @@ export default {
       sortBy: '',
       loggedUser: null,
       routeEmailId: null,
+      email:null,
     };
   },
   created() {
@@ -68,6 +69,10 @@ export default {
           );
           this.emails.splice(idx, 1);
         });
+    },
+    replyToEmail(email) {
+      this.showModal = true;
+      this.email=email
     },
     toggleForm() {
       this.showModal = !this.showModal;
