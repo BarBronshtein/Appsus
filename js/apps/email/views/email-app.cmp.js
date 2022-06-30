@@ -10,10 +10,10 @@ export default {
   <section class="email-app">
       <email-filter @filtered="setFilter" />
       <email-list :emails=emailsToShow />
-      <email-folder-list @openModal="composeEmail" :emails="emails"/>
+      <email-folder-list @openModal="toggleForm" :emails="emails"/>
     </section>
     <aside>
-        <email-compose :user="loggedUser" @composedEmail="saveEmail" v-if="showModal" />
+        <email-compose @closeForm="closeModal" :user="loggedUser" @composedEmail="saveEmail" v-if="showModal" />
     </aside>
   
 `,
@@ -65,8 +65,11 @@ export default {
         this.emails.splice(idx, 1);
       });
     },
-    composeEmail() {
+    toggleForm() {
       this.showModal = !this.showModal;
+    },
+    closeModal() {
+      this.showModal = false;
     },
   },
   computed: {

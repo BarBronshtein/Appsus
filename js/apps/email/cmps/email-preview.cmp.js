@@ -9,7 +9,7 @@ export default {
         </div>
         <div @click="$emit('selectedEmail',email)" class="details">
             <span>
-                {{email.to}}
+                {{email.from}}
             </span>
             <span>
                 {{email.subject}}

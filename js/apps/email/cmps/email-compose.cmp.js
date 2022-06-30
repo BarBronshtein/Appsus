@@ -1,11 +1,14 @@
 export default {
   template: `
  <section class="email-compose">
+ <h4>Write your email
+        <button class="btn btn-close-form"  @click="$emit('closeForm',false)">
+          X
+        </button>
+      </h4>
     <form @submit.prevent="composeEmail" class="email-compose-form">
-      <h4>Write your email</h4>
-      <h5>
-        From: {{sendEmail.from}}
-      </h5>
+      
+      
       <label>
             <input placeholder="To" required v-model="sendEmail.to"  type="email" class="email-form-input-to">
         </label>
@@ -15,7 +18,9 @@ export default {
         <textarea class="email-compose-textarea" v-model="sendEmail.body" cols="30" rows="10">
         </textarea>
         <div class="btn-email-container">
-          <button class="btn send-form-btn">Send</button>
+          <button type="submit" class="btn send-form-btn">
+            Send
+          </button>
 
         </div>
     </form>
