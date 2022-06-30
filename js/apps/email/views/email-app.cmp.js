@@ -4,16 +4,18 @@ import emailList from '../cmps/email-list.cmp.js';
 import emailFilter from '../cmps/email-filter.cmp.js';
 import emailFolderList from '../cmps/email-folder-list.cmp.js';
 import emailCompose from '../cmps/email-compose.cmp.js';
+import emailDetails from './email-details.cmp.js';
 export default {
   name: 'email-app',
   template: `
   <section class="email-app">
-      <email-filter v-if="" @filtered="setFilter" />
-      <email-list v-if="" :emails=emailsToShow />
+      <email-filter v-if="!routeEmailId" @filtered="setFilter" />
+      <email-list v-if="!routeEmailId" :emails=emailsToShow />
       <email-folder-list @openModal="toggleForm" :emails="emails"/>
+      <email-details @markAsRead="updateEmails" v-if="routeEmailId"/>
     </section>
     <aside>
-        <email-compose @closeForm="closeModal" :user="loggedUser" @composedEmail="saveEmail" v-if="showModal" />
+        <email-compose  @closeForm="closeModal" :user="loggedUser" @saveAsDraft="saveEmail" @composedEmail="saveEmail" v-if="showModal" />
     </aside>
   
 `,
@@ -25,6 +27,7 @@ export default {
       filterBy: {},
       sortBy: '',
       loggedUser: null,
+      routeEmailId: null,
     };
   },
   created() {
@@ -41,14 +44,18 @@ export default {
     setFilter(filterBy) {
       this.filterBy = filterBy;
     },
+    updateEmails(email) {
+      const idx = this.emails.findIndex(({ id }) => id === email.id);
+      this.emails.splice(idx, 1, email);
+    },
     saveEmail(email) {
       emailService
         .save(email)
         .then(emailService.query)
         .then(emails => {
           this.emails = emails;
+          this.showModal = email.status === 'draft' ? true : false;
         });
-      this.showModal = false;
     },
     removeEmail(receivedEmail) {
       if (!receivedEmail.isTrash) {
@@ -73,11 +80,10 @@ export default {
     emailsToShow() {
       // Guard
       if (!this.emails) return;
-
       const { txt, status, condition } = this.filterBy;
       const regex = new RegExp(txt, 'i');
       let filteredEmails = this.emails;
-
+      2;
       if (txt)
         // Filter by text user inputs and checks if exists in the subject or from or to the emails was sent
         filteredEmails = filteredEmails.filter(
@@ -85,7 +91,7 @@ export default {
             regex.test(subject) || regex.test(to) || regex.test(from)
         );
       // Filter by condition
-      if (condition && condition.includes('un')) {
+      if (condition?.includes('un')) {
         // Adjusting the condition to fit into our data structure
         const adjustedCondition =
           'is' +
@@ -103,13 +109,14 @@ export default {
           email => !email[adjustedCondition]
         );
       }
-
-      if (status && status !== 'inbox') {
+      //   Filter trash emails
+      if (status === 'trash')
+        filteredEmails = filteredEmails.filter(email => email.isTrash);
+      // Filter emails by status excludes tossed to trash emails
+      else if (status)
         filteredEmails = filteredEmails.filter(
-          email =>
-            email['is' + status.replace(status[0], status[0].toUpperCase())]
+          email => email.status === status && !email.isTrash
         );
-      }
       // Sort by date/title
       if (this.sortBy === 'date')
         filteredEmails = filteredEmails.sort((a, b) => a.sentAt - b.sentAt);
@@ -118,7 +125,6 @@ export default {
         filteredEmails = filteredEmails.sort((a, b) =>
           a.subject.localeCompare(b.subject)
         );
-
       return filteredEmails;
     },
   },
@@ -127,6 +133,7 @@ export default {
     emailFilter,
     emailFolderList,
     emailCompose,
+    emailDetails,
   },
   unmounted() {
     this.unsubscribe();
@@ -135,8 +142,9 @@ export default {
     $route: {
       handler() {
         const {
-          params: { status },
+          params: { status, emailId },
         } = this.$route;
+        this.routeEmailId = emailId;
         return (this.filterBy.status = status);
       },
       immediate: true,
