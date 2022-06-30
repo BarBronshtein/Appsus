@@ -36,7 +36,7 @@ export default {
       emailService.save(this.email);
     },
     removeEmail() {
-      eventBus.emit('remove-email', this.email.id);
+      eventBus.emit('remove-email', this.email);
     },
   },
   computed: {
