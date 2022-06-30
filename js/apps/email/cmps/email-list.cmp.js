@@ -23,7 +23,8 @@ export default {
       else this.selectedEmail = email;
     },
     goToLink(email) {
-      this.$router.push('/email/' + email.id);
+      const status = this.$route.params.status;
+      this.$router.push('/email/' + status + '/' + email.id);
     },
   },
   computed: {},

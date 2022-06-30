@@ -24,11 +24,11 @@ const routes = [
     component: bookDetails,
   },
   {
-    path: '/email',
+    path: '/email/:status',
     component: emailApp,
   },
   {
-    path: '/email/:emailId',
+    path: '/email/:status/:emailId',
     component: emailDetails,
   },
   {

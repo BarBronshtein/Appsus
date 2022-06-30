@@ -4,7 +4,7 @@ export default {
   template: `
   <section v-if="email" class="email-details">
     <pre>{{email}}</pre>
-    <router-link to="/email"><button>Back to list</button></router-link>
+    <router-link :to="emailListUrl"><button>Back to list</button></router-link>
   </section>
 `,
   data() {
@@ -25,6 +25,11 @@ export default {
       // TODO: use event bus to emit the event to email-app
     },
   },
-  computed: {},
+  computed: {
+    emailListUrl() {
+      const status = this.$route.params.status;
+      return '/email/' + status;
+    },
+  },
   unmounted() {},
 };
