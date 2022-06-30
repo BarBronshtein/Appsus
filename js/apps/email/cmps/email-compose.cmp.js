@@ -29,30 +29,44 @@ export default {
   data() {
     return {
       sendEmail: {
-        to: '',
-        subject: '',
-        body: '',
+        to: this.email?.to || '',
+        subject: this.email?.subject || this.note?.title || '',
+        body: this.note?.txt || '',
         isRead: false,
         isStarred: false,
-        isSent: true,
-        from: this.user.email,
+        status: 'sent',
+        from: this.user?.email,
       },
+      interval: null,
     };
   },
   created() {
-    // setInterval();
+    this.interval = setInterval(() => {
+      // If nothing was written exit
+      if (!this.sendEmail.to && !this.sendEmail.subject && !this.sendEmail.body)
+        return;
+      const newEmail = this.sendEmail;
+      newEmail.sentAt = Date.now();
+      newEmail.status = 'draft';
+      this.$emit('saveAsDraft', newEmail);
+    }, 5000);
   },
   methods: {
     composeEmail() {
       const newEmail = JSON.parse(JSON.stringify(this.sendEmail));
+      newEmail.sentAt = Date.now();
+      newEmail.status = 'sent';
+      this.$emit('composedEmail', newEmail);
+
       this.sendEmail.to = '';
       this.sendEmail.body = '';
       this.sendEmail.subject = '';
-      newEmail.sentAt = Date.now();
-      this.$emit('composedEmail', newEmail);
     },
   },
   computed: {},
-  unmounted() {},
-  props: ['user'],
+  unmounted() {
+    clearInterval(this.interval);
+    this.interval = '';
+  },
+  props: ['user', 'email', 'note'],
 };
