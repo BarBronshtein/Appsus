@@ -41,13 +41,12 @@ function _createEmails() {
       id: 'e101',
       subject: 'Miss you!',
       body: 'Would love to catch up sometimes',
-      isRead: false,
+      status: 'sent',
       sentAt: 1551133930594,
       to: 'momo@momo.com',
       isStarred: false,
       isRead: true,
       from: 'user@appsus.com',
-      isSent: true,
     };
     const email2 = {
       id: 'e102',
@@ -57,9 +56,9 @@ function _createEmails() {
       sentAt: 1551188930594,
       from: 'baba@momo.com',
       to: 'user@appsus.com',
+      status: 'inbox',
       isStarred: true,
       isRead: false,
-      isSent: false,
     };
     const email3 = {
       id: 'e103',
@@ -67,9 +66,9 @@ function _createEmails() {
       body: 'Never want to see you again!',
       isRead: false,
       sentAt: 1551645930594,
+      status: 'inbox',
       from: 'dada1@momo.com',
       to: 'user@appsus.com',
-      isSent: false,
       isStarred: false,
       isRead: false,
     };

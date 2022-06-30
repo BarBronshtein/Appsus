@@ -29,7 +29,7 @@ const routes = [
   },
   {
     path: '/email/:status/:emailId',
-    component: emailDetails,
+    component: emailApp,
   },
   {
     path: '/keep',
