@@ -47,35 +47,37 @@ export default {
             console.log("ffff");
         },
         onImageSelect(ev) {
-            console.log(ev.target.files[0].name);
             var reader = new FileReader()
-            var imgSrc
+            const imgTitle=this.$refs.noteTitle.value
+            const img = new Image()
             reader.onload = function (event) {
-                imgSrc = ev.target.files[0].name
+                img.src = event.target.result
+                const newNote = {
+                    id: '',
+                    type: 'note-img',
+                    isPinned: false,
+                    info: {
+                        url: img.src,
+                        title: imgTitle,
+                    },
+                    style: {
+                        backgroundColor: '#eeeeee',
+                    },
+                }
+                eventBus.emit('save-new-note', newNote)
             }
-            const x=reader.readAsDataURL(ev.target.files[0])
-            const newNote = {
-                id: '',
-                type: 'note-img',
-                isPinned: false,
-                info: {
-                    url: x,
-                    title: this.$refs.noteTitle.value,
-                },
-                style: {
-                    backgroundColor: '#eeeeee',
-                },
-            }
-            eventBus.emit('save-new-note', newNote)
+            reader.readAsDataURL(ev.target.files[0])
         },
         onAddVideoNote() {
+            const vidUrl= prompt('Enter Youtube video adress')
+            if(!vidUrl) return
             const newNote = {
                 id: '',
                 type: 'note-video',
                 isPinned: false,
                 info: {
                     title: this.$refs.noteTitle.value,
-                    url: prompt('Enter Youtube video adress'),
+                    url:vidUrl.replace("watch?v=", "embed/"),
                 },
                 style: {
                     backgroundColor: '#eeeeee',
