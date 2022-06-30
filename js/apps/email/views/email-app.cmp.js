@@ -22,7 +22,7 @@ export default {
       emails: null,
       showModal: false,
       unsubscribe: null,
-      filterBy: '',
+      filterBy: {},
       sortBy: '',
       loggedUser: null,
     };
@@ -50,20 +50,17 @@ export default {
         });
       this.showModal = false;
     },
-    removeEmail(emailId) {
-      // change to email after completing go to trash feature and emailId to id
-      //   if (!receivedEmail.trash) {
-      //     return emailService.sendToTrash(receivedEmail.id).then(updatedEmail => {
-      //       const idx = this.emails.findIndex(
-      //         email => email.id === updatedEmail.id
-      //       );
-      //       email.splice(idx, 1, updatedEmail);
-      //     });
-      //   } else
-      emailService.remove(emailId).then(() => {
-        const idx = this.emails.findIndex(email => email.id === emailId);
-        this.emails.splice(idx, 1);
-      });
+    removeEmail(receivedEmail) {
+      if (!receivedEmail.isTrash) {
+        receivedEmail.isTrash = true;
+        return emailService.save(receivedEmail);
+      } else
+        emailService.remove(receivedEmail.id).then(() => {
+          const idx = this.emails.findIndex(
+            email => email.id === receivedEmail.id
+          );
+          this.emails.splice(idx, 1);
+        });
     },
     toggleForm() {
       this.showModal = !this.showModal;
@@ -74,29 +71,54 @@ export default {
   },
   computed: {
     emailsToShow() {
-      const { txt, status } = this.filterBy;
+      // Guard
+      if (!this.emails) return;
+
+      const { txt, status, condition } = this.filterBy;
       const regex = new RegExp(txt, 'i');
       let filteredEmails = this.emails;
+
       if (txt)
+        // Filter by text user inputs and checks if exists in the subject or from or to the emails was sent
         filteredEmails = filteredEmails.filter(
-          ({ subject, to }) => regex.test(subject) || regex.test(to)
+          ({ subject, to, from }) =>
+            regex.test(subject) || regex.test(to) || regex.test(from)
         );
-      if (status === 'read')
-        filteredEmails = filteredEmails.filter(email => email.isRead);
-      if (status === 'unread')
-        filteredEmails = filteredEmails.filter(email => !email.isRead);
-      if (status === 'starred')
-        filteredEmails = filteredEmails.filter(email => email.isStarred);
-      if (status === 'sent')
-        filteredEmails = filteredEmails.filter(email => email.isSent);
-      if (status === 'unstarred')
-        filteredEmails = filteredEmails.filter(email => !email.isStarred);
+      // Filter by condition
+      if (condition && condition.includes('un')) {
+        // Adjusting the condition to fit into our data structure
+        const adjustedCondition =
+          'is' +
+          condition.slice(2).replace(condition[2], condition[2].toUpperCase());
+
+        filteredEmails = filteredEmails.filter(
+          email => email[adjustedCondition]
+        );
+      } else if (condition) {
+        // Adjusting the condition to fit into our data structure
+        const adjustedCondition =
+          'is' + condition.replace(condition[0], condition[0].toUpperCase());
+
+        filteredEmails = filteredEmails.filter(
+          email => !email[adjustedCondition]
+        );
+      }
+
+      if (status && status !== 'inbox') {
+        filteredEmails = filteredEmails.filter(
+          email =>
+            email['is' + status.replace(status[0], status[0].toUpperCase())]
+        );
+      }
+      // Sort by date/title
       if (this.sortBy === 'date')
         filteredEmails = filteredEmails.sort((a, b) => a.sentAt - b.sentAt);
+
       if (this.sortBy === 'title')
         filteredEmails = filteredEmails.sort((a, b) =>
           a.subject.localeCompare(b.subject)
         );
+
       return filteredEmails;
     },
   },
@@ -108,5 +130,14 @@ export default {
   },
   unmounted() {
     this.unsubscribe();
+  },
+  watch: {
+    '$route.hash': {
+      handler() {
+        const hash = this.$route.hash;
+        return (this.filterBy.status = hash.slice(1));
+      },
+      immediate: true,
+    },
   },
 };
