@@ -4,12 +4,12 @@ import noteActions from "./note-actions.cmp.js";
 export default {
   props: ['note'],
   template: `<article class="note-container">
-    <h2>{{note.info.label}}</h2>
+    <h3>{{note.info.label}}</h3>
     <ul>
       <li v-for="(todo,idx) in note.info.todos" class="flex space-between">
         <p :style="lineStyle(todo)"
         @click="markTodo(todo)">{{todo.txt}}</p>
-        <button class="btn fa-solid fa-xmark"
+        <button class="todo-btn fa-solid fa-xmark"
         @click="removeTodo(idx)"></button>
       </li>
     </ul>

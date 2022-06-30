@@ -7,14 +7,25 @@ import noteTodos from '../cmps/note-todos.cmp.js';
 export default {
   props: ['notes'],
   template: `
-  <section class="note-list">
-    <div v-for="note in notes" :key="note.id" class="notes-container">
-      <component :is="note.type"
+  <section>
+    <h2 class="list-title">Pinned</h2>
+    <article class="note-list">
+    <div v-for="note in notes" :key="note.id">
+      <component v-if="note.isPinned" :is="note.type"
           :note="note"
           :style="note.style">
       </component>
     </div>
-
+    </article>
+    <h2 class="list-title">Others</h2>
+    <article class="note-list">
+    <div v-for="note in notes" :key="note.id">
+      <component v-if="!note.isPinned" :is="note.type"
+          :note="note"
+          :style="note.style">
+      </component>
+    </div>
+    </article>
   </section>`,
   components: {
     noteTxt,

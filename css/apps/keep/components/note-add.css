@@ -1,0 +1,34 @@
+
+.note-add-container{
+    align-items: center;
+    width: 600px;
+    line-height: 2rem;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 0 rgb(122, 122, 122),inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%);
+ }
+
+ .note-add-options{
+    display: flex;
+    align-items: center;
+ }
+
+ .note-add-options p{
+    margin:0 10px 0 20px;
+    color: rgb(99, 99, 99);
+    font-size: 1.3rem;
+ }
+ 
+ .note-add-options p:hover{
+    transition: .1s;
+    color: black;
+    text-shadow: 0 0 3px rgb(0, 0, 0);
+}
+
+.note-add-container input{
+    border:none;
+    padding-inline-start: 5px;
+    font-size: 1.1rem;
+    width: 55%;
+}
