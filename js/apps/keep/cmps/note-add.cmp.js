@@ -34,7 +34,7 @@ export default {
                 type: 'note-txt',
                 isPinned: false,
                 info: {
-                    txt: this.$refs.noteTitle.value,
+                    title: this.$refs.noteTitle.value,
                 },
                 style: {
                     backgroundColor: '#eeeeee',
@@ -91,7 +91,7 @@ export default {
                 type: 'note-todos',
                 isPinned: false,
                 info: {
-                    label: this.$refs.noteTitle.value,
+                    title: this.$refs.noteTitle.value,
                     todos: [],
                 },
                 style: {

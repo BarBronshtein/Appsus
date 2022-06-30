@@ -42,7 +42,7 @@ function _createNotes() {
         type: 'note-txt',
         isPinned: true,
         info: {
-          txt: 'Fullstack Me Baby!',
+          title: 'Fullstack Me Baby!',
         },
         style: {
           backgroundColor: '#25370d',
@@ -65,7 +65,7 @@ function _createNotes() {
         type: 'note-todos',
         isPinned: false,
         info: {
-          label: 'Get my stuff together',
+          title: 'Get my stuff together',
           todos: [
             {
               txt: 'Driving liscence',
@@ -84,12 +84,4 @@ function _createNotes() {
     ]
     utilService.saveToStorage(NOTES_KEY, notes)
   }
-}
-
-function _createNote() {
-  const note = {
-    id: utilService.makeId(),
-    title: '',
-  };
-  return note;
 }
