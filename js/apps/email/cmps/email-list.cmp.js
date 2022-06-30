@@ -5,7 +5,7 @@ export default {
   <ul class="clean-list">
     <li v-for="email in emails" :key="email.id" class="email-preview-container">
       
-        <email-preview @selectedEmail="goToLink" :selectedEmail="selectedEmail" :email="email"/>
+        <email-preview @reply="replyEmail" @selectedEmail="goToLink" :selectedEmail="selectedEmail" :email="email"/>
       
     </li>
   </ul>
@@ -25,6 +25,9 @@ export default {
     goToLink(email) {
       const status = this.$route.params.status;
       this.$router.push('/email/' + status + '/' + email.id);
+    },
+    replyEmail(email) {
+      this.$emit('reply', email);
     },
   },
   computed: {},
