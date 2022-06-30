@@ -2,8 +2,17 @@ import { emailService } from '../services/email-service.js';
 
 export default {
   template: `
-  <section v-if="email" class="email-details">
-    <pre>{{email}}</pre>
+  <section v-if="email" class="email-details flex flex-column">
+    <div class="email-user flex flex-column">
+      <div class="email-user-container flex">
+        <i class="fa-solid fa-circle-user flex align-center justify-center"></i>
+        <h3>{{email.from}}</h3>
+      </div>
+      <small class="text-secondary">{{email.to}}</small>
+    </div>
+    <div class="email-content">
+      <p>{{email.body}}</p>
+    </div>
     <router-link :to="emailListUrl"><button>Back to list</button></router-link>
   </section>
 `,
