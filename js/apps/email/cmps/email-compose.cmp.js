@@ -30,12 +30,12 @@ export default {
     return {
       sendEmail: {
         to: this.email?.to || '',
-        subject: this.email?.subject || '',
-        body: this.email?.body || '',
+        subject: this.email?.subject || this.note?.title || '',
+        body: this.note?.txt || '',
         isRead: false,
         isStarred: false,
         status: 'sent',
-        from: this.user.email,
+        from: this.user?.email,
       },
       interval: null,
     };
@@ -68,5 +68,5 @@ export default {
     clearInterval(this.interval);
     this.interval = '';
   },
-  props: ['user', 'email'],
+  props: ['user', 'email', 'note'],
 };

@@ -15,7 +15,7 @@ export default {
       <email-details @markAsRead="updateEmails" v-if="routeEmailId"/>
     </section>
     <aside>
-        <email-compose :email="email"  @closeForm="closeModal" :user="loggedUser" @saveAsDraft="saveEmail" @composedEmail="saveEmail" v-if="showModal" />
+        <email-compose :note="noteDetails" :email="email"  @closeForm="closeModal" :user="loggedUser" @saveAsDraft="saveEmail" @composedEmail="saveEmail" v-if="showModal" />
     </aside>
   
 `,
@@ -28,7 +28,8 @@ export default {
       sortBy: '',
       loggedUser: null,
       routeEmailId: null,
-      email:null,
+      email: null,
+      noteDetails: null,
     };
   },
   created() {
@@ -72,7 +73,8 @@ export default {
     },
     replyToEmail(email) {
       this.showModal = true;
-      this.email=email
+      this.email = email;
+      this.email.subject = 'RE :' + this.email.subject;
     },
     toggleForm() {
       this.showModal = !this.showModal;
@@ -144,11 +146,16 @@ export default {
     this.unsubscribe();
   },
   watch: {
-    $route: {
+    '$route.params': {
       handler() {
         const {
           params: { status, emailId },
+          query: { title, txt },
         } = this.$route;
+        if (title && txt) {
+          this.showModal = true;
+          this.noteDetails = { title, txt };
+        }
         this.routeEmailId = emailId;
         return (this.filterBy.status = status);
       },
