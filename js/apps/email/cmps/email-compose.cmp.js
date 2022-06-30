@@ -42,6 +42,9 @@ export default {
   },
   created() {
     this.interval = setInterval(() => {
+      // If nothing was written exit
+      if (!this.sendEmail.to && !this.sendEmail.subject && !this.sendEmail.body)
+        return;
       const newEmail = this.sendEmail;
       newEmail.sentAt = Date.now();
       newEmail.status = 'draft';
