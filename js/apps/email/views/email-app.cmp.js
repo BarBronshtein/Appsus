@@ -28,9 +28,7 @@ export default {
     };
   },
   created() {
-    emailService
-      .queryUser()
-      .then((user) => (this.loggedUser = user));
+    emailService.queryUser().then(user => (this.loggedUser = user));
 
     emailService.query().then(emails => (this.emails = emails));
 
@@ -50,6 +48,7 @@ export default {
         .then(emails => {
           this.emails = emails;
         });
+      this.showModal = false;
     },
     removeEmail(emailId) {
       // change to email after completing go to trash feature and emailId to id
@@ -67,7 +66,7 @@ export default {
       });
     },
     composeEmail() {
-      this.showModal = true;
+      this.showModal = !this.showModal;
     },
   },
   computed: {

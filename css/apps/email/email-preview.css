@@ -23,3 +23,10 @@
   display: flex;
   justify-content: center;
 }
+
+.details > * {
+  flex: 5;
+}
+.details > :first-child {
+  flex: 1;
+}

@@ -1,34 +1,34 @@
 export default {
   template: `
   <section class="email-folder-list flex flex-column">
-          <div @click="$emit('openModal')" class="btn compose-btn">
+          <a @click="$emit('openModal')" class="btn compose-btn">
               Compose
-            </div>
-            <a class="flex justify-center text-align-c">
+            </a>
+            <a class="flex justify-center text-align-c unread-emails">
             Unread emails:{{showUnreadEmailsCount}}
             </a>
        <router-link to="">
-            <div class="inbox-filter-list">
+            <div class="btn inbox-filter-list">
                 Inbox
             </div>
        </router-link>
        <router-link to="">
-            <div class="starred-filter-list">
+            <div class="btn starred-filter-list">
                 Starred
             </div>
         </router-link>
         <router-link to="">
-            <div class="trash-filter-list">
+            <div class="btn trash-filter-list">
                 Trash
             </div>
         </router-link>
         <router-link to="">
-            <div class="sent-filter-list">
+            <div class="btn sent-filter-list">
                 Sent
             </div>
         </router-link>
         <router-link to="">
-            <div class="draft-filter-list">
+            <div class="btn draft-filter-list">
                 Draft
             </div>
         </router-link>
