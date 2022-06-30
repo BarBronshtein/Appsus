@@ -13,11 +13,13 @@ export default {
     };
   },
   created() {
-    const id = this.$route.params.emailId;
-    emailService.get(id).then(email => {
+    const { emailId } = this.$route.params;
+    if (!emailId) return;
+    emailService.get(emailId).then(email => {
       this.email = email;
       this.email.isRead = true;
       emailService.save(this.email);
+      this.$emit('markAsRead', this.email);
     });
   },
   methods: {

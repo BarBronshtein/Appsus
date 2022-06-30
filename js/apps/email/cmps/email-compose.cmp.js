@@ -34,25 +34,36 @@ export default {
         body: '',
         isRead: false,
         isStarred: false,
-        isSent: true,
+        status: 'sent',
         from: this.user.email,
       },
+      interval: null,
     };
   },
   created() {
-    // setInterval();
+    this.interval = setInterval(() => {
+      const newEmail = this.sendEmail;
+      newEmail.sentAt = Date.now();
+      newEmail.status = 'draft';
+      this.$emit('saveAsDraft', newEmail);
+    }, 5000);
   },
   methods: {
     composeEmail() {
       const newEmail = JSON.parse(JSON.stringify(this.sendEmail));
+      newEmail.sentAt = Date.now();
+      newEmail.status = 'sent';
+      this.$emit('composedEmail', newEmail);
+
       this.sendEmail.to = '';
       this.sendEmail.body = '';
       this.sendEmail.subject = '';
-      newEmail.sentAt = Date.now();
-      this.$emit('composedEmail', newEmail);
     },
   },
   computed: {},
-  unmounted() {},
+  unmounted() {
+    clearInterval(this.interval);
+    this.interval = '';
+  },
   props: ['user'],
 };
