@@ -17,7 +17,6 @@ export default {
     emailService.get(id).then(email => {
       this.email = email;
       this.email.isRead = true;
-      console.log(this.email);
       emailService.save(this.email);
     });
   },

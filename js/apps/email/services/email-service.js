@@ -8,12 +8,17 @@ export const emailService = {
   remove,
   save,
   get,
+  queryUser,
 };
 _createUser();
 _createEmails();
 
 function query() {
   return storageService.query(EMAIL_KEY);
+}
+
+function queryUser() {
+  return storageService.query(USER_KEY);
 }
 
 function remove(emailId) {
@@ -41,6 +46,8 @@ function _createEmails() {
       to: 'momo@momo.com',
       isStarred: false,
       isRead: true,
+      from: 'user@appsus.com',
+      isSent: true,
     };
     const email2 = {
       id: 'e102',
@@ -48,9 +55,11 @@ function _createEmails() {
       body: 'Would love to hang up with you',
       isRead: true,
       sentAt: 1551188930594,
-      to: 'baba@momo.com',
+      from: 'baba@momo.com',
+      to: 'user@appsus.com',
       isStarred: true,
       isRead: false,
+      isSent: false,
     };
     const email3 = {
       id: 'e103',
@@ -58,7 +67,9 @@ function _createEmails() {
       body: 'Never want to see you again!',
       isRead: false,
       sentAt: 1551645930594,
-      to: 'dada1@momo.com',
+      from: 'dada1@momo.com',
+      to: 'user@appsus.com',
+      isSent: false,
       isStarred: false,
       isRead: false,
     };
@@ -69,9 +80,13 @@ function _createEmails() {
 }
 
 function _createUser() {
-  const loggedinUser = utilService.loadFromStorage(USER_KEY) || {
-    email: 'user@appsus.com',
-    fullname: 'Mahatma Appsus',
-  };
+  let loggedinUser = utilService.loadFromStorage(USER_KEY);
+  if (!loggedinUser) {
+    loggedinUser = {
+      email: 'user@appsus.com',
+      fullname: 'Mahatma Appsus',
+    };
+    utilService.saveToStorage(USER_KEY, loggedinUser);
+  }
   return loggedinUser;
 }
