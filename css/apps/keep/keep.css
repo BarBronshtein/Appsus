@@ -15,10 +15,11 @@
  .list-title {
    color: #5f6368;
    letter-spacing: .07272727em;
-   font-family: Roboto,Arial,sans-serif;
+   font-family: roboto,Bold;
    font-size: .6875rem;
-   font-weight: 500;
+   font-weight: 600;
    line-height: 1rem;
    text-transform: uppercase;
    margin: 32px 32px 8px;
+   text-align: center;
  }

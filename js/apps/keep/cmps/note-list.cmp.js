@@ -8,18 +8,18 @@ export default {
   props: ['notes'],
   template: `
   <section>
-    <h2 class="list-title">Pinned</h2>
+    <h2 v-if="hasPinnedNote" class="list-title">Pinned</h2>
     <article class="note-list">
-    <div v-for="note in notes" :key="note.id">
+    <div v-for="note in pinnedNotes" :key="note.id">
       <component v-if="note.isPinned" :is="note.type"
           :note="note"
           :style="note.style">
       </component>
     </div>
     </article>
-    <h2 class="list-title">Others</h2>
+    <h2  v-if="hasPinnedNote" class="list-title">Others</h2>
     <article class="note-list">
-    <div v-for="note in notes" :key="note.id">
+    <div v-for="note in otherNotes" :key="note.id">
       <component v-if="!note.isPinned" :is="note.type"
           :note="note"
           :style="note.style">
@@ -42,5 +42,14 @@ export default {
     },
   },
   computed: {
+    hasPinnedNote(){
+     return this.notes.some(note=>note.isPinned)
+    },
+    pinnedNotes(){
+      return this.notes.filter(note=>note.isPinned)
+    },
+    otherNotes(){
+      return this.notes.filter(note=>!note.isPinned)
+    }
   },
 };
