@@ -4,19 +4,21 @@ import { eventBus } from '../../../services/event-bus-service.js';
 export default {
   template: `
  <section class="email-preview" >
-        <span @click="toggleStarred" class="email-icon" :class="showStarred">★</span>
-        <span @click="$emit('selectedEmail',email)" class="details">
+        <div @click="toggleStarred"  :class="[showStarred,'email-icon']">
+          ★
+        </div>
+        <div @click="$emit('selectedEmail',email)" class="details">
             <span>
                 {{email.to}}
             </span>
             <span>
                 {{email.subject}}
             </span>
-        </span>
-        <span class="email-icons">
-        <span @click="toggleRead" class="email-icon" :class="showRead"></span>
-        <span @click="removeEmail" class="fa-solid fa-trash-can email-icon"></span>
-        </span>
+        </div>
+        <div class="email-icons">
+        <i @click="toggleRead" :class="[showRead,'email-icon']"></i>
+        <i @click="removeEmail" class="fa-solid fa-trash-can email-icon"></i>
+        </div>
         <!-- <email-partially-open v-if="selectedEmail===email" :email="selectedEmail"/> -->
  </section>
 `,

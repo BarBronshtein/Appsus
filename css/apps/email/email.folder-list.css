@@ -5,20 +5,17 @@
   top: 120px;
   left: 0;
   height: 100vh;
-  margin-inline-end: 1rem;
-  width: 10vw;
+  width: 20vw;
 }
 
-.email-folder-list > a {
-  margin-bottom: 2rem;
-}
-
-.email-folder-list .btn.compose-btn {
+.email-folder-list > a,
+.email-folder-list > a > .btn {
   margin-bottom: 0.8rem;
   color: grey;
+  text-align: center;
 }
 
-.email-folder-list > a {
-  display: flex;
-  justify-content: center;
+.unread-emails {
+  padding: 1rem;
+  margin-bottom: 0.8rem;
 }
