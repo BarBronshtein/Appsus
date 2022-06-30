@@ -1,0 +1,76 @@
+.note-container {
+   border-radius: 5px;
+   padding: 2px;
+   margin: 10px;
+   width: 300px;
+   box-shadow: inset 1px 1px 0 rgb(0 0 0 / 3%), inset 0 -1px 0 rgb(0 0 0 / 2%);
+}
+
+.note-container:hover {
+   box-shadow: 0 0 3px 0px rgb(122, 122, 122);
+}
+
+.note-container h3,
+h2 {
+   margin: 5px;
+}
+
+.note-container p {
+   font-size: small;
+   align-self: center;
+   margin: 0;
+}
+
+.note-container input {
+   font-size: medium;
+   margin-left: 5px;
+   border-radius: 2px;
+   border: none;
+   padding-left:4px ;
+}
+
+.todo-btn {
+   font-size: large;
+   cursor: pointer;
+   color: black;
+   border: none;
+   height: 1.5rem;
+   border-radius: 50%;
+   background-color: transparent;
+   margin-right: 10px;
+}
+
+.todo-btn:hover {
+   transition: .1s;
+   color: aliceblue;
+   text-shadow: 0 0 5px rgb(122 126 74);
+}
+
+.note-actions-container {
+   text-align: end;
+   opacity: 0;
+   position: relative;
+   top: 10px;
+}
+
+.note-actions-container p {
+   margin: 15px 10px 5px 30px;
+   font-size: 1.3rem;
+}
+
+.note-container:hover .note-actions-container {
+   opacity: 1;
+   top: 0;
+   transition: .2s;
+}
+
+.note-actions-container p:hover {
+   transition: .1s;
+   color: aliceblue;
+   text-shadow: 0 0 10px rgb(122 126 74);
+}
+
+.note-container img {
+   width: 100%;
+   border-radius: 3px;
+}
