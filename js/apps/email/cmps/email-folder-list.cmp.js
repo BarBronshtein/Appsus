@@ -4,17 +4,17 @@ export default {
           <a @click="$emit('openModal')" class="btn compose-btn">
           Compose
             </a>
-            <a class="flex justify-center align-center text-align-c unread-emails">
-            <i class="fa-solid fa-envelope"></i>
-            <small>{{showUnreadEmailsCount}}</small>
-            </a>
-       <router-link v-for="(opt,i) in options" :key="i" :to="'/email/'+opt">
-            <div class="btn">
+            
+       <router-link v-for="(opt,i) in options" :key="i" :to="'/email/'+opt" >
+            <div class="btn email-status-btn" :class="show(opt)">
                 <i :class="'fa-solid fa-'+icons[i]"></i>
                 <span>{{opt.replace(opt[0],opt[0].toUpperCase())}}</span>
             </div>
        </router-link>
-        
+       <a v-if="showUnreadEmailsCount" class="flex justify-center align-center text-align-c email-active unread-emails">
+            <i class="fa-solid fa-envelope"></i>
+            <small>{{showUnreadEmailsCount}}</small>
+            </a>
   </section>
 `,
   data() {
@@ -24,7 +24,11 @@ export default {
     };
   },
 
-  methods: {},
+  methods: {
+    show(opt) {
+      if (opt === this.$route.params.status) return 'email-active';
+    },
+  },
   computed: {
     showUnreadEmailsCount() {
       return this.emails?.reduce((acc, email) => {

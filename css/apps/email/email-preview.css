@@ -21,8 +21,7 @@
 }
 
 .details > :last-child {
-  flex: 2;
-  letter-spacing: 2px;
+  flex: 3;
 }
 .details > :first-child {
   flex: 1;

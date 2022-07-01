@@ -1,6 +1,6 @@
 export default {
   template: `
- <section class="email-filter flex flex-column align-center">
+ <section class="email-filter flex align-center">
     <div class="email-filter-by flex align-center">
       <input @input="$emit('filtered',filterBy)" type="search" v-model="filterBy.txt" placeholder="Search mail">
       <select v-model="filterBy.condition" @change="$emit('filtered',filterBy)">

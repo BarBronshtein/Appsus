@@ -48,8 +48,8 @@ export default {
   },
   computed: {
     showContent() {
-      if (this.email.body.length > 30)
-        return this.email.body.slice(0, 27) + '...';
+      if (this.email.body.length > 20)
+        return this.email.body.slice(0, 17) + '...';
       return this.email.body;
     },
     showRead() {
