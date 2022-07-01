@@ -19,6 +19,6 @@
 }
 
 .email-sort-by > *:hover {
-  border-bottom: 3px solid red;
+  border-bottom: 3px solid #f98f85;
   padding-bottom: 0;
 }

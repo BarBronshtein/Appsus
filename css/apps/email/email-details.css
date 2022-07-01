@@ -4,11 +4,11 @@
   flex: 1;
 }
 .email-content > p {
+  margin: 1.5rem 2.5rem;
   background-color: #fff;
   white-space: break-spaces;
-  margin: 1.5rem 2.5rem;
-  padding: 1.5rem;
   flex: 1;
+  padding: 5px;
 }
 
 .email-details {
@@ -29,6 +29,10 @@
   left: -10%;
   font-size: 1.5rem;
   color: #1a73e8;
+}
+
+.email-user-container > a:hover {
+  opacity: 0.7;
 }
 
 .email-user-container > i {
