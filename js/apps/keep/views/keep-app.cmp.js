@@ -36,6 +36,10 @@ export default {
         //saving the last note to the first place
         this.notes.unshift(note)
         keepService.saveNotes(this.notes)
+        eventBus.emit('show-msg', {
+          txt: 'Note Saved!',
+          type: 'success',
+        })
       })
     },
     updateNote(note) {

@@ -47,7 +47,6 @@ export default {
                     backgroundColor: '#eeeeee',
                 }
             }
-            // this.$router.push(newNote)
             eventBus.emit('save-new-note', newNote)
         },
         onAddImgNote() {
@@ -140,7 +139,7 @@ export default {
     created() {
         const queryParams = this.$route.query
         console.log(queryParams);
-        if(!queryParams) return
+        if(!queryParams.title&&!queryParams.txt) return
         const newNote = {
             id: '',
             type: 'note-txt',
@@ -153,6 +152,7 @@ export default {
             }
         }
         eventBus.emit('save-new-note', newNote)
+        this.$router.push('/keep')//reset the params
       },
     unmounted() { },
 };
