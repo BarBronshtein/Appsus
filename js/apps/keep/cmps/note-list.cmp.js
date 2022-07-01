@@ -14,7 +14,8 @@ export default {
     <div v-for="note in pinnedNotes" :key="note.id">
       <component :is="note.type"
           :note="note"
-          :style="note.style">
+          :style="note.style"
+          @update="updateNote">
       </component>
     </div>
     </article>
@@ -23,7 +24,8 @@ export default {
     <div v-for="note in otherNotes" :key="note.id">
       <component :is="note.type"
           :note="note"
-          :style="note.style">
+          :style="note.style"
+          @update="updateNote">
       </component>
     </div>
     </article>
@@ -36,11 +38,11 @@ export default {
     noteAudio,
   },
   data() {
-    return {};
+    return {}
   },
   methods: {
-    remove(id) {
-      this.$emit('removed', id);
+    updateNote(note) {
+      this.$emit('updated', note)
     },
   },
   computed: {

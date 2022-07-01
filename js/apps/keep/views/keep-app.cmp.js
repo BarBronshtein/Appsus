@@ -1,5 +1,6 @@
 import { keepService } from '../services/keep-service.js';
 import { eventBus } from '../../../services/event-bus-service.js';
+import { utilService } from '../../../services/utils-service.js';
 import noteList from '../cmps/note-list.cmp.js';
 import noteAdd from '../cmps/note-add.cmp.js';
 import noteFilter from '../cmps/note-filter.cmp.js';
@@ -10,7 +11,7 @@ export default {
     <section class="keep-app">
       <note-add/>
         <note-filter @filtered="setFilter"/>
-      <note-list :notes="notesToShow"/>
+      <note-list :notes="notesToShow" @updated="updateNote"/>
     </section>
     `,
   components: {
@@ -43,12 +44,20 @@ export default {
       })
     },
     updateNote(note) {
-      keepService.save(note).then()
+      console.log('please');
+      utilService.debounce(()=>{
+        console.log('some')
+        // keepService.save(note).then()
+      },100)
     },
     removeNote(noteToremove) {
       keepService.remove(noteToremove.id).then(() => {
         const noteIdx = this.notes.findIndex(note => note.id === noteToremove.id);
-        this.notes.splice(noteIdx, 1);
+        this.notes.splice(noteIdx, 1)
+        eventBus.emit('show-msg', {
+          txt: 'Note Removed!',
+          type: 'error',
+        })
       })
     },
   },

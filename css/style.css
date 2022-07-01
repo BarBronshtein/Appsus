@@ -25,6 +25,7 @@
 /* Keep */
 @import 'apps/keep/components/note-add.css';
 @import 'apps/keep/components/note-container.css';
+@import 'apps/keep/components/note-filter.css';
 @import 'apps/keep/mq/mq.css';
 
 .img-container {

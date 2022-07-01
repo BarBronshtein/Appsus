@@ -12,3 +12,8 @@ a {
   text-decoration: none;
   color: #333;
 }
+
+iframe{
+  border: none;
+  border-radius: 3px;
+}

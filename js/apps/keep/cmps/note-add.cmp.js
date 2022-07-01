@@ -42,6 +42,7 @@ export default {
                 isPinned: false,
                 info: {
                     title: noteTitle,
+                    txt: 'none yet',
                 },
                 style: {
                     backgroundColor: '#eeeeee',
@@ -138,7 +139,6 @@ export default {
     computed: {},
     created() {
         const queryParams = this.$route.query
-        console.log(queryParams);
         if(!queryParams.title&&!queryParams.txt) return
         const newNote = {
             id: '',

@@ -3,6 +3,7 @@ export const utilService = {
   loadFromStorage,
   makeId,
   displayByCurrency,
+  debounce,
 };
 
 function saveToStorage(key, value) {
@@ -29,4 +30,16 @@ function displayByCurrency(currency) {
     style: 'currency',
     currency,
   });
+}
+
+function debounce (fn, delay) {
+  var timeoutID = null
+  return function () {
+    clearTimeout(timeoutID)
+    var args = arguments
+    var that = this
+    timeoutID = setTimeout(function () {
+      fn.apply(that, args)
+    }, delay)
+  }
 }
