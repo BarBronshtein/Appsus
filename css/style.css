@@ -23,7 +23,7 @@
 @import 'apps/email/email-list.css';
 @import 'apps/email/email-filter.css';
 @import 'apps/email/email-details.css';
-
+@import 'apps/email/mq/mq.css';
 /* Keep */
 @import 'apps/keep/components/note-add.css';
 @import 'apps/keep/components/note-container.css';

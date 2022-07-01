@@ -14,16 +14,18 @@
 .email-folder-list > a > .btn {
   margin-bottom: 0.8rem;
   color: grey;
-  text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 100%;
+  border-radius: 12px;
+}
+
+.unread-emails {
+  padding: 1rem;
 }
 
 .unread-emails > :first-child {
-  margin-inline-end: 0.4rem;
-  font-size: 1.2rem;
+  margin-inline-end: 0.7rem;
 }
 
 .email-status-btn > :first-child {
@@ -34,6 +36,7 @@
 .email-folder-list .btn.email-status-btn.email-active {
   color: red;
 }
+
 .email-folder-list .btn.email-status-btn.email-active,
 .btn.email-status-btn:hover {
   background-color: #fce8e6;
@@ -46,13 +49,3 @@
 .btn.compose-btn:hover {
   background-color: #fce8e6;
 }
-
-/* .btn.compose-btn:hover::before {
-  content: '+';
-  background-image: url(https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 2rem;
-  padding: 0 1rem;
-  background-image: url(https://www.gstatic.com/images/icons/material/colored_icons/2x/create_32dp.png);
-} */

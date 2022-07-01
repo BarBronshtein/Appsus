@@ -4,6 +4,27 @@
 
 .email-filter-by {
   margin-inline-end: 5rem;
+  border-radius: 5px;
+}
+
+.email-filter-by :first-child,
+.email-filter-by > select {
+  position: relative;
+  height: 100%;
+  padding: 0.2rem;
+  border-radius: 5px;
+  border: transparent;
+  background-color: #eee;
+}
+.email-filter-by > select {
+  padding: 0.4rem;
+}
+
+.email-search-icon {
+  position: absolute;
+  left: 90%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .email-sort-by > :first-child,

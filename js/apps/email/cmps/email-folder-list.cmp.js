@@ -5,13 +5,11 @@ export default {
           Compose
             </a>
             
-       <router-link v-for="(opt,i) in options" :key="i" :to="'/email/'+opt" >
-            <div class="btn email-status-btn" :class="show(opt)">
+       <router-link v-for="(opt,i) in options" class="btn email-status-btn" :class="show(opt)" :key="i" :to="'/email/'+opt" >
                 <i :class="'fa-solid fa-'+icons[i]"></i>
                 <span>{{opt.replace(opt[0],opt[0].toUpperCase())}}</span>
-            </div>
        </router-link>
-       <a v-if="showUnreadEmailsCount" class="flex justify-center align-center text-align-c email-active unread-emails">
+       <a v-if="showUnreadEmailsCount" class="email-active unread-emails">
             <i class="fa-solid fa-envelope"></i>
             <small>{{showUnreadEmailsCount}}</small>
             </a>
