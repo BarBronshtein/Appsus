@@ -1,17 +1,22 @@
 import { eventBus } from '../services/event-bus-service.js';
 export default {
   template: `
- <section v-if="msg" class="user-msg" :class="msg.type">
-    <button @click="hideMsg" class="btn hide-msg-btn">X</button>
-    <h3>User msg</h3>
-    <p>{{msg.txt}}</p>
-    <router-link class="user-msg-link" :to="'/book/'+msg.link">Check it Out</router-link>
+ <section class="user-msg" :class="msgStyle">
+   <!-- <p>Notice!</p> -->
+   <p>{{msg?.txt}}</p>
+   <router-link v-if="msg?.link" class="user-msg-link" :to="'/book/'+msg.link">Check it Out</router-link>
+   <button @click="hideMsg" class="hide-msg-btn fa-solid fa-xmark"></button>
  </section>
 `,
   data() {
     return {
       unsubscribe: null,
-      msg: '',
+      msg: null,
+      //  {
+      //   txt: '',
+      //   type: '',
+      //   link: '',
+      // },
     };
   },
   created() {
@@ -25,10 +30,18 @@ export default {
       }, 3000);
     },
     hideMsg() {
-      this.msg = '';
+      this.msg = null;
     },
   },
-  computed: {},
+  computed: {
+    msgStyle() {
+      return {
+        success: this.msg?.type === 'success',
+        error: this.msg?.type === 'error',
+        ['msg-shown']: this.msg,
+      }
+    }
+  },
   unmounted() {
     this.unsubscribe();
   },
