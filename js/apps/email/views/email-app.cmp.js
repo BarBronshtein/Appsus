@@ -9,13 +9,13 @@ export default {
   name: 'email-app',
   template: `
   <section class="email-app">
-      <email-filter v-if="!routeEmailId" @filtered="setFilter" />
+      <email-filter @setSort="setSortBy" v-if="!routeEmailId" @filtered="setFilter" />
       <email-list @reply="replyToEmail" v-if="!routeEmailId" :emails=emailsToShow />
       <email-folder-list @openModal="toggleForm" :emails="emails"/>
       <email-details @markAsRead="updateEmails" v-if="routeEmailId"/>
     </section>
     <aside>
-        <email-compose :note="noteDetails" :email="email"  @closeForm="closeModal" :user="loggedUser" @saveAsDraft="saveEmail" @composedEmail="saveEmail" v-if="showModal" />
+        <email-compose @clearProps=clearPassedProps :note="noteDetails" :email="email"  @closeForm="closeModal"  @saveAsDraft="saveEmail" @composedEmail="saveEmail" v-if="showModal" />
     </aside>
   
 `,
@@ -40,11 +40,17 @@ export default {
     this.unsubscribe = eventBus.on('remove-email', this.removeEmail);
   },
   methods: {
-    setSort(sortBy) {
-      this.sortBy = sortBy;
+    setSortBy(status) {
+      if (this.sortBy.status === status) this.sortBy.state *= -1;
+      else this.sortBy = { status, state: 1 };
     },
     setFilter(filterBy) {
-      this.filterBy = filterBy;
+      const { status, txt, condition } = filterBy;
+      this.filterBy = {
+        status: status || this.filterBy.status,
+        txt: txt || this.filterBy.txt,
+        condition: condition || this.filterBy.condition,
+      };
     },
     updateEmails(email) {
       const idx = this.emails.findIndex(({ id }) => id === email.id);
@@ -73,7 +79,7 @@ export default {
     },
     replyToEmail(email) {
       this.showModal = true;
-      this.email = email;
+      this.email = JSON.parse(JSON.stringify(email));
       this.email.subject = 'RE :' + this.email.subject;
     },
     toggleForm() {
@@ -81,6 +87,10 @@ export default {
     },
     closeModal() {
       this.showModal = false;
+    },
+    clearPassedProps() {
+      this.email = null;
+      this.noteDetails = null;
     },
   },
   computed: {
@@ -98,14 +108,16 @@ export default {
             regex.test(subject) || regex.test(to) || regex.test(from)
         );
       // Filter by condition
-      if (condition?.includes('un')) {
+      if (condition === 'all') {
+        // do nothing
+      } else if (condition?.startsWith('un')) {
         // Adjusting the condition to fit into our data structure
         const adjustedCondition =
           'is' +
           condition.slice(2).replace(condition[2], condition[2].toUpperCase());
 
         filteredEmails = filteredEmails.filter(
-          email => email[adjustedCondition]
+          email => !email[adjustedCondition]
         );
       } else if (condition) {
         // Adjusting the condition to fit into our data structure
@@ -113,7 +125,7 @@ export default {
           'is' + condition.replace(condition[0], condition[0].toUpperCase());
 
         filteredEmails = filteredEmails.filter(
-          email => !email[adjustedCondition]
+          email => email[adjustedCondition]
         );
       }
       //   Filter trash emails
@@ -125,12 +137,13 @@ export default {
           email => email.status === status && !email.isTrash
         );
       // Sort by date/title
-      if (this.sortBy === 'date')
-        filteredEmails = filteredEmails.sort((a, b) => a.sentAt - b.sentAt);
-
-      if (this.sortBy === 'title')
-        filteredEmails = filteredEmails.sort((a, b) =>
-          a.subject.localeCompare(b.subject)
+      if (this.sortBy.status === 'date')
+        filteredEmails = filteredEmails.sort(
+          (a, b) => (a.sentAt - b.sentAt) * this.sortBy.state
+        );
+      else if (this.sortBy.status === 'title')
+        filteredEmails = filteredEmails.sort(
+          (a, b) => a.subject.localeCompare(b.subject) * this.sortBy.state
         );
       return filteredEmails;
     },

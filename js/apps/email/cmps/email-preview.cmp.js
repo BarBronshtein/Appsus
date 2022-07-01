@@ -3,16 +3,15 @@ import { emailService } from '../services/email-service.js';
 import { eventBus } from '../../../services/event-bus-service.js';
 export default {
   template: `
- <section class="email-preview" >
-        <div @click="toggleStarred"  :class="[showStarred,'email-icon']">
-          ★
+ <section class="email-preview flex align-center" >
+        <div @click="toggleStarred"  :class="[showStarred,'fa-solid fa-star email-icon ']">
         </div>
-        <div @click="$emit('selectedEmail',email)" class="details">
+        <div @click="$emit('selectedEmail',email)" class="details flex align center">
             <span>
                 {{email.from}}
             </span>
             <span>
-                {{email.subject}}
+                {{email.subject}} - {{showContent}}
             </span>
         </div>
         <div class="email-icons">
@@ -48,6 +47,11 @@ export default {
     },
   },
   computed: {
+    showContent() {
+      if (this.email.body.length > 30)
+        return this.email.body.slice(0, 27) + '...';
+      return this.email.body;
+    },
     showRead() {
       return {
         'fa-solid fa-envelope': this.email.isRead === false,

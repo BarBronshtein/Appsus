@@ -41,10 +41,11 @@ export default {
     };
   },
   created() {
+    const { to, subject, body } = this.sendEmail;
+    this.sendEmail.to = to === this.user?.email ? this.email?.from : to;
     this.interval = setInterval(() => {
       // If nothing was written exit
-      if (!this.sendEmail.to && !this.sendEmail.subject && !this.sendEmail.body)
-        return;
+      if (!to && !subject && !body) return;
       const newEmail = this.sendEmail;
       newEmail.sentAt = Date.now();
       newEmail.status = 'draft';
@@ -67,6 +68,7 @@ export default {
   unmounted() {
     clearInterval(this.interval);
     this.interval = '';
+    this.$emit('clearProps');
   },
   props: ['user', 'email', 'note'],
 };
