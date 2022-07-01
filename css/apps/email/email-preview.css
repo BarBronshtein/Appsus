@@ -24,8 +24,9 @@
   justify-content: center;
 }
 
-.details > * {
-  flex: 5;
+.details > :last-child {
+  flex: 2;
+  letter-spacing: 2px;
 }
 .details > :first-child {
   flex: 1;
