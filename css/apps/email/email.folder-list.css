@@ -5,7 +5,7 @@
   top: 120px;
   left: 0;
   height: 100vh;
-  width: 20vw;
+  width: 15vw;
   box-shadow: 0px 8px 10px 1px rgb(0 0 0 / 14%),
     0px 3px 14px 2px rgb(0 0 0 / 12%), 0px 5px 5px -3px rgb(0 0 0 / 20%);
 }
@@ -14,10 +14,38 @@
 .email-folder-list > a > .btn {
   margin-bottom: 0.8rem;
   color: grey;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 12px;
 }
 
 .unread-emails {
   padding: 1rem;
-  margin-bottom: 0.8rem;
+}
+
+.unread-emails > :first-child {
+  margin-inline-end: 0.7rem;
+}
+
+.email-status-btn > :first-child {
+  margin-inline-end: 0.7rem;
+}
+
+.email-folder-list > a.email-active,
+.email-folder-list .btn.email-status-btn.email-active {
+  color: red;
+}
+
+.email-folder-list .btn.email-status-btn.email-active,
+.btn.email-status-btn:hover {
+  background-color: #fce8e6;
+  border-radius: 5px;
+}
+
+.btn.compose-btn {
+  margin-top: 0.8rem;
+}
+.btn.compose-btn:hover {
+  background-color: #fce8e6;
 }

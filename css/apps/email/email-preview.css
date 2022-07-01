@@ -18,11 +18,19 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  cursor: pointer;
+  height: 100%;
+}
+
+.details > * {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .details > :last-child {
-  flex: 2;
-  letter-spacing: 2px;
+  flex: 3;
 }
 .details > :first-child {
   flex: 1;

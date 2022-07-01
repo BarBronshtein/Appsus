@@ -22,7 +22,6 @@ export default {
           <button type="submit" class="btn send-form-btn">
             Send
           </button>
-
         </div>
     </form>
  </section>

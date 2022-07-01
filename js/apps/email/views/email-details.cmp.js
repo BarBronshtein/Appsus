@@ -2,18 +2,19 @@ import { emailService } from '../services/email-service.js';
 
 export default {
   template: `
-  <section v-if="email" class="email-details flex flex-column">
+  <section v-if="email" class="flex flex-column email-details">
     <div class="email-user flex flex-column">
-      <div class="email-user-container flex">
+      <div class="email-user-container flex align-center">
+        <router-link :to="emailListUrl"><i class="fa-solid fa-circle-arrow-left"></i></router-link>
         <i class="fa-solid fa-circle-user flex align-center justify-center"></i>
         <h3>{{email.from}}</h3>
+        <p>{{showEmailSentAtTime}}</p>
       </div>
-      <small class="text-secondary">{{email.to}}</small>
+      <small class="text-secondary">to {{email.to}}</small>
     </div>
     <div class="email-content">
       <p>{{email.body}}</p>
     </div>
-    <router-link :to="emailListUrl"><button>Back to list</button></router-link>
   </section>
 `,
   data() {
@@ -40,6 +41,12 @@ export default {
     emailListUrl() {
       const status = this.$route.params.status;
       return '/email/' + status;
+    },
+    showEmailSentAtTime() {
+      return new Date(this.email.sentAt)
+        .toString()
+        .slice(0, 24)
+        .replaceAll(' ', ',');
     },
   },
   unmounted() {},
