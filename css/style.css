@@ -5,6 +5,7 @@
 /* Components */
 @import 'components/footer.css';
 @import 'components/header.css';
+@import 'components/user-msg.css';
 /* Media Queries */
 @import 'mq/mq.css';
 /* Setup */
@@ -35,20 +36,3 @@
   margin-inline-start: 1rem;
 }
 
-.red,
-.error {
-  color: red;
-}
-
-.green,
-.success,
-.user-msg-link {
-  color: greenyellow;
-}
-
-.user-msg {
-  background-color: #333;
-  position: fixed;
-  top: 150px;
-  right: 0;
-}
