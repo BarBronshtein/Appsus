@@ -20,14 +20,12 @@
 @import 'apps/email/email.folder-list.css';
 @import 'apps/email/email-preview.css';
 @import 'apps/email/email.compose.css';
-
-
+@import 'apps/email/email-list.css';
 
 /* Keep */
 @import 'apps/keep/components/note-add.css';
 @import 'apps/keep/components/note-container.css';
 @import 'apps/keep/mq/mq.css';
-
 
 .img-container {
   margin-top: 2rem;
