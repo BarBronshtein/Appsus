@@ -45,7 +45,7 @@ export default {
       const { status, txt, condition } = filterBy;
       this.filterBy = {
         status: status || this.filterBy.status,
-        txt: txt || this.filterBy.txt,
+        txt: txt,
         condition: condition || this.filterBy.condition,
       };
     },
@@ -59,12 +59,28 @@ export default {
         .then(emailService.query)
         .then(emails => {
           this.emails = emails;
-          this.showModal = email.status === 'draft' ? true : false;
+          if (email.status === 'draft') {
+            this.showModal = true;
+            eventBus.emit('show-msg', {
+              txt: 'Saved as draft',
+              type: 'success',
+            });
+          } else {
+            this.showModal = false;
+            eventBus.emit('show-msg', {
+              txt: 'Email sent successfuly',
+              type: 'success',
+            });
+          }
         });
     },
     removeEmail(receivedEmail) {
       if (!receivedEmail.isTrash) {
         receivedEmail.isTrash = true;
+        eventBus.emit('show-msg', {
+          txt: 'Email moved to trash',
+          type: 'success',
+        });
         return emailService.save(receivedEmail);
       } else
         emailService.remove(receivedEmail.id).then(() => {
@@ -72,13 +88,17 @@ export default {
             email => email.id === receivedEmail.id
           );
           this.emails.splice(idx, 1);
+          eventBus.emit('show-msg', {
+            txt: 'Email was removed successfuly',
+            type: 'success',
+          });
         });
     },
     replyToEmail(email) {
       this.showModal = true;
       this.email = JSON.parse(JSON.stringify(email));
       if (this.email.subject.startsWith('RE')) return;
-      this.email.subject = 'RE :' + this.email.subject;
+      this.email.subject = 'RE: ' + this.email.subject;
     },
     toggleForm() {
       this.showModal = !this.showModal;
