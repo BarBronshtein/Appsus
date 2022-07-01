@@ -45,7 +45,7 @@ export default {
       const { status, txt, condition } = filterBy;
       this.filterBy = {
         status: status || this.filterBy.status,
-        txt: txt || this.filterBy.txt,
+        txt: txt,
         condition: condition || this.filterBy.condition,
       };
     },
@@ -78,7 +78,7 @@ export default {
       this.showModal = true;
       this.email = JSON.parse(JSON.stringify(email));
       if (this.email.subject.startsWith('RE')) return;
-      this.email.subject = 'RE :' + this.email.subject;
+      this.email.subject = 'RE: ' + this.email.subject;
     },
     toggleForm() {
       this.showModal = !this.showModal;

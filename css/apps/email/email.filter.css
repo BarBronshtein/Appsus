@@ -1,0 +1,24 @@
+.email-filter {
+  padding: 1rem;
+}
+
+.email-filter-by {
+  margin-inline-end: 5rem;
+}
+
+.email-sort-by > :first-child,
+.email-filter-by > :first-child {
+  margin-inline-end: 2rem;
+}
+.email-sort-by:hover > * {
+  cursor: pointer;
+}
+
+.email-sort-by > * {
+  padding-bottom: 3px;
+}
+
+.email-sort-by > *:hover {
+  border-bottom: 3px solid red;
+  padding-bottom: 0;
+}
