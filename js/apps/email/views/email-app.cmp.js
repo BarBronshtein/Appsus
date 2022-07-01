@@ -26,15 +26,12 @@ export default {
       unsubscribe: null,
       filterBy: {},
       sortBy: '',
-      loggedUser: null,
       routeEmailId: null,
       email: null,
       noteDetails: null,
     };
   },
   created() {
-    emailService.queryUser().then(user => (this.loggedUser = user));
-
     emailService.query().then(emails => (this.emails = emails));
 
     this.unsubscribe = eventBus.on('remove-email', this.removeEmail);
@@ -80,6 +77,7 @@ export default {
     replyToEmail(email) {
       this.showModal = true;
       this.email = JSON.parse(JSON.stringify(email));
+      if (this.email.subject.startsWith('RE')) return;
       this.email.subject = 'RE :' + this.email.subject;
     },
     toggleForm() {

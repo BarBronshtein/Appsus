@@ -2,14 +2,16 @@ export default {
   template: `
   <section class="email-folder-list flex flex-column">
           <a @click="$emit('openModal')" class="btn compose-btn">
-              Compose
+          Compose
             </a>
-            <a class="flex justify-center text-align-c unread-emails">
-            Unread emails:{{showUnreadEmailsCount}}
+            <a class="flex justify-center align-center text-align-c unread-emails">
+            <i class="fa-solid fa-envelope"></i>
+            <small>{{showUnreadEmailsCount}}</small>
             </a>
        <router-link v-for="(opt,i) in options" :key="i" :to="'/email/'+opt">
             <div class="btn">
-                {{opt.replace(opt[0],opt[0].toUpperCase())}}
+                <i :class="'fa-solid fa-'+icons[i]"></i>
+                <span>{{opt.replace(opt[0],opt[0].toUpperCase())}}</span>
             </div>
        </router-link>
         
@@ -18,12 +20,11 @@ export default {
   data() {
     return {
       options: ['inbox', 'sent', 'trash', 'draft'],
+      icons: ['inbox', 'paper-plane', 'trash', 'file'],
     };
   },
 
-  methods: {
-    a() {},
-  },
+  methods: {},
   computed: {
     showUnreadEmailsCount() {
       return this.emails?.reduce((acc, email) => {
