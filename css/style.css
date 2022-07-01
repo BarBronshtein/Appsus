@@ -21,7 +21,8 @@
 @import 'apps/email/email-preview.css';
 @import 'apps/email/email.compose.css';
 @import 'apps/email/email-list.css';
-@import 'apps/email/email.filter.css';
+@import 'apps/email/email-filter.css';
+@import 'apps/email/email-details.css';
 
 /* Keep */
 @import 'apps/keep/components/note-add.css';
@@ -35,4 +36,3 @@
 .img-container > :last-child {
   margin-inline-start: 1rem;
 }
-

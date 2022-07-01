@@ -9,3 +9,8 @@
   display: flex;
   margin: 2rem 0;
 }
+
+.email-list > ul > li:hover {
+  text-shadow: 1px 0px 0 #333;
+  box-shadow: 0px 2px 0px black;
+}

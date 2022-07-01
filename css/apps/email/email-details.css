@@ -1,0 +1,43 @@
+.email-content {
+  background-color: #eee;
+  display: flex;
+  flex: 1;
+}
+.email-content > p {
+  background-color: #fff;
+  white-space: break-spaces;
+  margin: 1.5rem 2.5rem;
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.email-details {
+  height: 100%;
+  margin-top: 1rem;
+}
+
+.email-user {
+  margin-bottom: 1rem;
+}
+
+.email-user-container {
+  position: relative;
+}
+
+.email-user-container > a {
+  position: absolute;
+  left: -10%;
+  font-size: 1.5rem;
+  color: #1a73e8;
+}
+
+.email-user-container > i {
+  font-size: 2rem;
+  color: #eee;
+  background-color: #f98f85;
+  border-radius: 50%;
+  margin-inline-end: 1rem;
+}
+.email-user-container > h3 {
+  margin-inline-end: 2rem;
+}
