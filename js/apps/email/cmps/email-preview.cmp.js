@@ -32,7 +32,14 @@ export default {
   methods: {
     toggleRead() {
       this.email.isRead = !this.email.isRead;
-      emailService.save(this.email);
+      emailService.save(this.email).then(
+        eventBus.emit('show-msg', {
+          txt: this.email.isRead
+            ? 'Email marked as read'
+            : 'Email marked as unread',
+          type: 'success',
+        })
+      );
     },
     toggleStarred() {
       this.email.isStarred = !this.email.isStarred;
@@ -43,7 +50,12 @@ export default {
     },
     restoreEmail() {
       this.email.isTrash = false;
-      emailService.save(this.email);
+      emailService.save(this.email).then(
+        eventBus.emit('show-msg', {
+          txt: 'Email restored from trash',
+          type: 'success',
+        })
+      );
     },
   },
   computed: {

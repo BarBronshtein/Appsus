@@ -59,12 +59,28 @@ export default {
         .then(emailService.query)
         .then(emails => {
           this.emails = emails;
-          this.showModal = email.status === 'draft' ? true : false;
+          if (email.status === 'draft') {
+            this.showModal = true;
+            eventBus.emit('show-msg', {
+              txt: 'Saved as draft',
+              type: 'success',
+            });
+          } else {
+            this.showModal = false;
+            eventBus.emit('show-msg', {
+              txt: 'Email sent successfuly',
+              type: 'success',
+            });
+          }
         });
     },
     removeEmail(receivedEmail) {
       if (!receivedEmail.isTrash) {
         receivedEmail.isTrash = true;
+        eventBus.emit('show-msg', {
+          txt: 'Email moved to trash',
+          type: 'success',
+        });
         return emailService.save(receivedEmail);
       } else
         emailService.remove(receivedEmail.id).then(() => {
@@ -72,6 +88,10 @@ export default {
             email => email.id === receivedEmail.id
           );
           this.emails.splice(idx, 1);
+          eventBus.emit('show-msg', {
+            txt: 'Email was removed successfuly',
+            type: 'success',
+          });
         });
     },
     replyToEmail(email) {
