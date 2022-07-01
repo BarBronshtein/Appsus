@@ -4,11 +4,12 @@ import noteActions from "./note-actions.cmp.js";
 export default {
   props: ['note'],
   template: `<article class="note-container">
-    <h3>{{note.info.title}}</h3>
+    <h3 contenteditable @input="updateTitle">{{note.info.title}}</h3>
     <ul>
       <li v-for="(todo,idx) in note.info.todos" class="flex space-between">
         <p :style="lineStyle(todo)"
-        @click="markTodo(todo)">{{todo.txt}}</p>
+        @click="markTodo(todo)"
+        contenteditable @input="updateTodo($event,idx)">{{todo.txt}}</p>
         <button class="todo-btn fa-solid fa-xmark"
         @click="removeTodo(idx)"></button>
       </li>
@@ -24,6 +25,14 @@ export default {
     };
   },
   methods: {
+    updateTodo(e,idx){
+      this.note.info.todos[idx].txt=e.target.innerText
+      this.$emit('update', this.note)
+    },
+    updateTitle(e){
+      this.note.info.title=e.target.innerText
+      this.$emit('update', this.note)
+    },
     markTodo(todo) {
       todo.doneAt = todo.doneAt ? null : Date.now()
       keepService.save(this.note)
@@ -39,12 +48,15 @@ export default {
       }
     },
     addTodo() {
+      const newTodoTxt = this.$refs.todoInput.value
+      if (!newTodoTxt) return
       const newTodo = {
-        txt: this.$refs.todoInput.value,
+        txt: newTodoTxt,
         doneAt: null,
       }
       this.note.info.todos.push(newTodo)
       keepService.save(this.note)
+      this.$refs.todoInput.value = ''
     }
   },
   computed: {

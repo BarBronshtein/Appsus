@@ -43,6 +43,7 @@ function _createNotes() {
         isPinned: true,
         info: {
           title: 'Fullstack Me Baby!',
+          txt:'Im not sure'
         },
         style: {
           backgroundColor: '#25370d',

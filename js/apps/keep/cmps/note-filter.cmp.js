@@ -1,8 +1,8 @@
 export default {
     template: `
-   <section class="note-filter">
+   <section class="note-filter-container">
       <input @input="filter" type="search"
-       v-model="filterBy.title" placeholder="Search by Title">
+       v-model="filterBy.title" placeholder="Search by Note title">
       <select v-model="filterBy.type" @change="filter">
           <option v-for="(opt,i) in valueOptions" :key="i" :value="valueOptions[i]">
             {{userOptions[i]}}</option>

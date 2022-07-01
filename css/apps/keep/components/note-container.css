@@ -12,14 +12,14 @@
 }
 
 .note-container h3,
-h2 {
+h4 {
    margin: 5px;
 }
 
 .note-container p {
    font-size: small;
    align-self: center;
-   margin: 0;
+   margin: 10px 0 0 5px;
 }
 
 .note-container input {
@@ -27,7 +27,7 @@ h2 {
    margin-left: 5px;
    border-radius: 2px;
    border: none;
-   padding-left:4px ;
+   padding-left: 4px;
 }
 
 .todo-btn {
@@ -56,7 +56,7 @@ h2 {
 
 .note-actions-container p {
    margin: 15px 10px 5px 30px;
-   font-size: 1.3rem;
+   font-size: 1.2rem;
 }
 
 .note-container:hover .note-actions-container {

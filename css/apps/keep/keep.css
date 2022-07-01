@@ -1,25 +1,25 @@
- .hide-element {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
- }
+.hide-element {
+   position: absolute;
+   opacity: 0;
+   pointer-events: none;
+}
 
- .note-list {
-    column-count: 3;
-    column-gap: 10px;
-    width: 930px;
-    margin: auto;
-    transition: .3s;
- }
+.note-list {
+   column-count: 3;
+   column-gap: 10px;
+   width: 930px;
+   margin: auto;
+   transition: .3s;
+}
 
- .list-title {
+.list-title {
    color: #5f6368;
    letter-spacing: .07272727em;
-   font-family: roboto,Bold;
+   font-family: roboto, Bold;
    font-size: .6875rem;
    font-weight: 600;
    line-height: 1rem;
    text-transform: uppercase;
    margin: 32px 32px 8px;
    text-align: center;
- }
+}
