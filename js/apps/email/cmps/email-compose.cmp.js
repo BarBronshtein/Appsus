@@ -1,6 +1,7 @@
+import { emailService } from '../services/email-service.js';
 export default {
   template: `
- <section class="email-compose">
+ <section v-if="sendEmail.from" class="email-compose">
  <h4>Write your email
         <button class="btn btn-close-form"  @click="$emit('closeForm',false)">
           X
@@ -35,14 +36,18 @@ export default {
         isRead: false,
         isStarred: false,
         status: 'sent',
-        from: this.user?.email,
+        from: null,
       },
       interval: null,
     };
   },
   created() {
+    emailService.queryUser().then(({ email }) => {
+      this.sendEmail.from = email;
+      const { to } = this.sendEmail;
+      this.sendEmail.to = to === email ? this.email?.from : to;
+    });
     const { to, subject, body } = this.sendEmail;
-    this.sendEmail.to = to === this.user?.email ? this.email?.from : to;
     this.interval = setInterval(() => {
       // If nothing was written exit
       if (!to && !subject && !body) return;
@@ -70,5 +75,5 @@ export default {
     this.interval = '';
     this.$emit('clearProps');
   },
-  props: ['user', 'email', 'note'],
+  props: ['email', 'note'],
 };
