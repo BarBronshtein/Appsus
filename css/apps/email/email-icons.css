@@ -3,23 +3,21 @@
 }
 
 .email-icon {
-  padding: 0.4rem;
+  padding: 0.7rem;
   border-radius: 50%;
   cursor: pointer;
 }
 
 .email-icon:hover {
-  background-color: #f5f5f5;
+  background-color: rgba(32, 33, 36, 0.059);
 }
 
 .email-star-grey {
   color: #fff;
   text-shadow: 0px 0px 2px grey;
-  padding: 0.3rem 0.3rem;
 }
 
 .email-star-yellow {
   text-shadow: none;
   color: yellow;
-  padding: 0.3rem 0.3rem;
 }
