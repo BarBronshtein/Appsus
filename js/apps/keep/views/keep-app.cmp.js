@@ -1,6 +1,5 @@
 import { keepService } from '../services/keep-service.js';
 import { eventBus } from '../../../services/event-bus-service.js';
-import { utilService } from '../../../services/utils-service.js';
 import noteList from '../cmps/note-list.cmp.js';
 import noteAdd from '../cmps/note-add.cmp.js';
 import noteFilter from '../cmps/note-filter.cmp.js';
@@ -44,11 +43,7 @@ export default {
       })
     },
     updateNote(note) {
-      console.log('please');
-      utilService.debounce(()=>{
-        console.log('some')
-        // keepService.save(note).then()
-      },100)
+      keepService.save(note).then()
     },
     removeNote(noteToremove) {
       keepService.remove(noteToremove.id).then(() => {
