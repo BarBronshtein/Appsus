@@ -8,6 +8,7 @@
   background-color: #fff;
   flex: 1;
   outline: solid 1rem #eee;
+  overflow-wrap: anywhere;
 }
 
 .email-details {
