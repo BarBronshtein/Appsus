@@ -2,7 +2,7 @@
   position: fixed;
   background: #fff;
   color: grey;
-  top: 120px;
+  top: 57px;
   left: 0;
   height: 100vh;
   width: 15vw;
@@ -13,6 +13,7 @@
 
 .email-folder-list > a,
 .email-folder-list > a > .btn {
+  padding: 1rem;
   margin-bottom: 0.8rem;
   color: grey;
   display: flex;
