@@ -32,7 +32,6 @@ export default {
     },
     methods: {
         onAddTxtNote() {
-
             const noteTitle = this.$refs.noteTitle.value
             if (!noteTitle) return
 
