@@ -7,9 +7,9 @@ export default {
   template: `
     <section class="book-app">
 
+      <book-add @addBook="addSelectedBook"/>
         <book-filter @filtered="setFilter"/>
         <book-list :books="booksToShow" @selected="selectBook"/>
-        <book-add @addBook="addSelectedBook"/>
     </section>
     `,
   components: {
