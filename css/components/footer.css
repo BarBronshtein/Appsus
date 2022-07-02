@@ -11,3 +11,7 @@
   box-shadow: 0 0 0px 2px rgb(32 33 36 / 6%);
   z-index: -10;
 }
+
+body.hide-footer .app-footer {
+  display: none;
+}

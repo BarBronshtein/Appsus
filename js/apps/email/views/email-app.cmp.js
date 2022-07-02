@@ -61,10 +61,17 @@ export default {
           this.emails = emails;
           if (email.status === 'draft') {
             this.showModal = true;
-            eventBus.emit('show-msg', {
-              txt: 'Saved as draft',
-              type: 'success',
-            });
+            eventBus
+              .emit('show-msg', {
+                txt: 'Saved as draft',
+                type: 'success',
+              })
+              .catch(
+                eventBus.emit('show-msg', {
+                  txt: `Failed to save as draft`,
+                  type: 'error',
+                })
+              );
           } else {
             this.showModal = false;
             eventBus.emit('show-msg', {
@@ -173,8 +180,12 @@ export default {
     emailCompose,
     emailDetails,
   },
+  created() {
+    document.body.classList.add('hide-footer');
+  },
   unmounted() {
-    this.unsubscribe();
+    if (this.unsubscribe) this.unsubscribe();
+    document.body.classList.remove('hide-footer');
   },
   watch: {
     '$route.params': {

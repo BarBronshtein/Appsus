@@ -2,8 +2,7 @@ export default {
   template: `
   <section @mouseenter="toggleMenu" @mouseleave="toggleMenu"  :class="[expand,'email-folder-list flex flex-column']">
           <a @click="$emit('openModal')" class="btn compose-btn">
-            <i class="fa-solid fa-circle-plus"></i>
-          <span>Compose</span>
+          <div class="text"></div>
             </a>
             
        <router-link v-for="(opt,i) in options" class="btn email-status-btn" :class="show(opt)" :key="i" :to="'/email/'+opt" >
