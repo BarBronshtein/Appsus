@@ -2,7 +2,8 @@ export default {
   template: `
   <section class="email-folder-list flex flex-column">
           <a @click="$emit('openModal')" class="btn compose-btn">
-          Compose
+            <i class="fa-solid fa-circle-plus"></i>
+          <span>Compose</span>
             </a>
             
        <router-link v-for="(opt,i) in options" class="btn email-status-btn" :class="show(opt)" :key="i" :to="'/email/'+opt" >
@@ -19,6 +20,7 @@ export default {
     return {
       options: ['inbox', 'sent', 'trash', 'draft'],
       icons: ['inbox', 'paper-plane', 'trash', 'file'],
+      isOpen: false,
     };
   },
 
