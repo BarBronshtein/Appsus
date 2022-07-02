@@ -81,9 +81,6 @@
   .about-card > .img-container {
     margin: 2rem 0;
   }
-  .about-card > .about-card-details {
-    margin-bottom: 1rem;
-  }
   .about-card,
   .about-card.row-reverse {
     margin: 2rem;
