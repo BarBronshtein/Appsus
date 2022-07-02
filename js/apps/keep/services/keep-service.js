@@ -54,7 +54,7 @@ function _createNotes() {
       type: 'note-img',
       isPinned: true,
       info: {
-        url: '../../../../img/keep-images/pappies.webp',
+        url: 'img/keep-images/pappies.webp',
         title: 'Ayyyyyyy papi!',
       },
       style: {
@@ -78,7 +78,7 @@ function _createNotes() {
       type: 'note-audio',
       isPinned: false,
       info: {
-        url: '../../../../audio/uncharted.mp3',
+        url: 'audio/uncharted.mp3',
         title: 'About this song I dont sure...',
       },
       style: {
@@ -126,7 +126,7 @@ function _createNotes() {
       type: 'note-img',
       isPinned: false,
       info: {
-        url: '../../../../img/keep-images/lake.jpg',
+        url: 'img/keep-images/lake.jpg',
         title: 'Looks good!',
       },
       style: {
@@ -159,7 +159,7 @@ function _createNotes() {
       type: 'note-img',
       isPinned: false,
       info: {
-        url: '../../../../img/keep-images/india.jpg',
+        url: 'img/keep-images/india.jpg',
         title: 'I want to be there',
       },
       style: {
@@ -208,7 +208,7 @@ function _createNotes() {
       type: 'note-audio',
       isPinned: true,
       info: {
-        url: '../../../../audio/chasing-drams.mp3',
+        url: 'audio/chasing-drams.mp3',
         title: 'This is my favorite song',
       },
       style: {
