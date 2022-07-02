@@ -8,19 +8,26 @@ export default {
   name: 'book-details',
   components: { longText, reviewAdd, reviewList },
   template: `<section v-if="book" class="book-details app-main">
+    <div class="book-container flex flex-column">
 
-    <div class="img-container">
-      <img :src="book.thumbnail" alt="">
-      <span v-if="showOnSale">
-        <img class="sale-img" :src="imgUrl" alt=""/>On Sale! </span>
-      </div>
-      <long-text :txt="book.description" v-if="isDescLong"/>
-      <p>{{displayReadingType}}</p>
-      <p>{{displayBookStatus}}</p>
-      <p :class="bookStylePrice">{{showPrice}}</p>
-      <div class="pagination">
-        <router-link class="btn pagination-book-btn" :to="'/book/'+prevBookId">Prev Book</router-link>
-        <router-link class="btn pagination-book-btn" :to="'/book/'+nextBookId">Next Book</router-link>
+      <div class="book-details-container flex">
+        <div class="img-container flex">
+          <img :src="book.thumbnail" alt="">
+          <span v-if="showOnSale" class="flex">
+            <img class="sale-img" :src="imgUrl" alt=""/>On Sale! </span>
+          </div>
+          <div class="book-description flex flex-column align-center justify-center">
+            
+            <long-text :txt="book.description" v-if="isDescLong"/>
+            <p>{{displayReadingType}}</p>
+            <p>{{displayBookStatus}}</p>
+            <p :class="bookStylePrice">{{showPrice}}</p>
+          </div>
+        </div>
+          <div class="pagination">
+            <router-link class="btn pagination-book-btn" :to="'/book/'+prevBookId">Prev Book</router-link>
+            <router-link class="btn pagination-book-btn" :to="'/book/'+nextBookId">Next Book</router-link>
+          </div>
       </div>
       <review-add v-if="book" @addedReview="addReview" :book="book"/> 
       <review-list v-if="book" :book="book" />

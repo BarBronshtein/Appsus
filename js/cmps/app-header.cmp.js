@@ -3,7 +3,7 @@ export default {
       <div @click="toggleMenu" :class="[menuOpen,'main-screen']"></div>
      <header class="app-header">
     <div class="logo">
-        <h3 class="fa-brands fa-accusoft"> Books!</h3>
+        <h3 class="fa-solid fa-horse-head">Appsus</h3>
     </div>
       <ul :class="[expand,'main-navbar']">
         <router-link @click="toggleMenu(false)" :to="sendTo(opt)" v-for="(opt,i) in options" :key="opt">{{opt.replace(opt[0],opt[0].toUpperCase())}}</router-link>
