@@ -6,7 +6,7 @@ export default {
       <iframe contenteditable class="video-player"  width="100%" height="200"
       :src="note.info.url">
     </iframe>    
-    <h3 contenteditable @input="updateTitle">{{note.info.title}}</h3>
+    <h4 contenteditable @input="updateTitle">{{note.info.title}}</h4>
         <note-actions :note="note"/>          
     </article>
     `,

@@ -4,7 +4,7 @@ import noteActions from "./note-actions.cmp.js";
 export default {
   props: ['note'],
   template: `<article class="note-container">
-    <h3 contenteditable @input="updateTitle">{{note.info.title}}</h3>
+    <h4 contenteditable @input="updateTitle">{{note.info.title}}</h4>
     <ul>
       <li v-for="(todo,idx) in note.info.todos" class="flex space-between">
         <p :style="lineStyle(todo)"
