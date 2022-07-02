@@ -14,52 +14,31 @@
   }
 
   .email-app {
-    left: 50px;
-    width: calc(100% - 50px);
-  }
-  .email-folder-list {
-    width: 50px;
-  }
-  .email-folder-list > a {
-    justify-content: center;
-  }
-  .email-folder-list > a > i.fa-solid,
-  .btn.compose-btn > :first-child {
-    margin: 0;
-  }
-  .email-folder-list > a > small,
-  .email-folder-list > a > span {
-    display: none;
-  }
-  .email-nav-open.email-folder-list {
-    width: 150px;
-  }
-
-  .email-nav-open.email-folder-list .unread-emails > :first-child,
-  .email-nav-open.email-folder-list .email-status-btn > :first-child,
-  .email-nav-open.email-folder-list .btn.compose-btn > :first-child {
-    margin-inline-end: 0.7rem;
-  }
-  .email-nav-open.email-folder-list > a {
-    justify-content: flex-start;
-  }
-
-  .email-nav-open.email-folder-list > a > small,
-  .email-nav-open.email-folder-list > a > span {
-    display: inline;
+    left: 56px;
+    width: calc(100% - 56px);
   }
 
   .email-filter {
     flex-direction: column;
   }
   .email-filter > :first-child {
-    margin: 0;
+    margin: 1rem 0;
   }
 
   /* Folder List */
 }
 
+@media screen and (max-width: 610px) {
+  .email-user-container {
+    flex-direction: column;
+  }
+}
+
 @media screen and (max-width: 480px) {
+  .email-filter-by select {
+    width: 100%;
+    margin: 1rem 0;
+  }
   .details {
     flex-direction: column;
   }
@@ -75,5 +54,8 @@
   }
   .email-filter > :first-child > :first-child {
     margin: 0;
+  }
+  .email-user-container {
+    flex-direction: column;
   }
 }

@@ -31,18 +31,13 @@
 .email-filter-by > :first-child {
   margin-inline-end: 2rem;
 }
-.email-sort-by:hover > * {
-  cursor: pointer;
-}
 
 .email-sort-by > * {
   padding-bottom: 3px;
 }
 
 .email-sort-by > *:hover {
+  cursor: pointer;
   border-bottom: 3px solid #f98f85;
   padding-bottom: 0;
-}
-.email-sort-by {
-  margin-top: 0.5rem;
 }

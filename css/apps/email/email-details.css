@@ -7,7 +7,7 @@
   justify-content: center;
   background-color: #fff;
   flex: 1;
-  outline: solid 2rem #eee;
+  outline: solid 1rem #eee;
 }
 
 .email-details {
@@ -26,9 +26,10 @@
 
 .email-user-container > a {
   position: absolute;
-  left: -10%;
+  left: -50px;
   font-size: 1.5rem;
   color: #1a73e8;
+  flex-direction: row;
 }
 
 .email-user-container > a:hover {
