@@ -4,14 +4,14 @@
   flex: 1;
 }
 .email-content > p {
-  margin: 1.5rem 2.5rem;
+  justify-content: center;
   background-color: #fff;
-  white-space: break-spaces;
   flex: 1;
-  padding: 5px;
+  outline: solid 2rem #eee;
 }
 
 .email-details {
+  max-width: 50%;
   height: 100%;
   margin-top: 1rem;
 }

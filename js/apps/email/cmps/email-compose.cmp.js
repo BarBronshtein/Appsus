@@ -3,8 +3,7 @@ export default {
   template: `
  <section v-if="sendEmail.from" class="email-compose">
  <h4>Write your email
-        <button class="btn btn-close-form"  @click="$emit('closeForm',false)">
-          X
+        <button class="btn btn-close-form fa-solid fa-xmark"  @click="$emit('closeForm',false)">
         </button>
       </h4>
     <form @submit.prevent="composeEmail" class="email-compose-form">

@@ -3,10 +3,10 @@ import { emailService } from '../services/email-service.js';
 import { eventBus } from '../../../services/event-bus-service.js';
 export default {
   template: `
- <section class="email-preview flex align-center" >
-        <div @click="toggleStarred"  :class="[showStarred,'fa-solid fa-star email-icon ']">
+ <section @click="$emit('selectedEmail',email)" class="email-preview flex align-center" >
+        <div @click.stop="toggleStarred"  :class="[showStarred,'fa-solid fa-star email-icon ']">
         </div>
-        <div @click="$emit('selectedEmail',email)" class="details flex align center">
+        <div  class="details flex align center">
             <span>
                 {{email.from}}
             </span>
@@ -15,10 +15,10 @@ export default {
             </span>
         </div>
         <div class="email-icons">
-        <i @click="toggleRead" :class="[showRead,'email-icon']"></i>
-        <i @click="removeEmail" class="fa-solid fa-trash-can email-icon"></i>
-        <i @click="restoreEmail" v-if="email.isTrash" class="fa-solid fa-trash-arrow-up email-icon"></i>
-        <i class="fa-solid fa-reply email-icon" @click="$emit('reply',email)"></i>
+        <i @click.stop="toggleRead" :class="[showRead,'email-icon']"></i>
+        <i @click.stop="removeEmail" class="fa-solid fa-trash-can email-icon"></i>
+        <i @click.stop="restoreEmail" v-if="email.isTrash" class="fa-solid fa-trash-arrow-up email-icon"></i>
+        <i class="fa-solid fa-reply email-icon" @click.stop="$emit('reply',email)"></i>
         <router-link :to="sendToNote" class="fa-solid fa-paper-plane email-icon"></router-link> 
 
         </div>
