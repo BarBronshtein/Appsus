@@ -1,0 +1,86 @@
+@media screen and (max-width: 780px) {
+  .app-header {
+    justify-content: space-between;
+  }
+
+  .app-header .logo,
+  .app-header .btn.menu-toggle {
+    margin: 0 3rem;
+  }
+
+  .main-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 15;
+
+    transition: opacity 0.6s;
+  }
+
+  .main-screen.menu-open {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .btn.menu-toggle {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    border: none;
+    /* color: var(--light-color); */
+    font-size: 1.6em;
+    transition: color 0.3s;
+  }
+  .main-navbar {
+    padding: 0;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    top: 105px;
+    height: 100vh;
+    width: 160px;
+    transform: translateX(100%);
+    background-color: #333;
+    z-index: 20;
+    transition: transform 0.6s, box-shadow 0.6s;
+  }
+  .main-navbar::after {
+    width: 100%;
+    height: 100%;
+    content: '';
+    /* background: url('../../img/about/navba-overlay-img.jpg') no-repeat center
+    center/cover; */
+    opacity: 0.05;
+  }
+
+  .main-navbar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: calc(1rem + 2px);
+    width: 100%;
+  }
+  .main-navbar a:hover {
+    padding-bottom: 1rem;
+  }
+
+  .expand {
+    box-shadow: -6px 0px 17px rgb(0 0 0 / 19%);
+    transform: translateX(0);
+  }
+}
+@media screen and (min-width: 780px) {
+  .btn.menu-toggle {
+    display: none;
+  }
+}
