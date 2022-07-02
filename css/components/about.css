@@ -1,5 +1,6 @@
 .about-page {
   background-color: #eee;
+  height: calc(100vh -130px);
 }
 
 .about-page > :nth-child(2) > .img-container > img {
