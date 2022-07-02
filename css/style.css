@@ -32,3 +32,5 @@
 @import 'apps/keep/mq/mq.css';
 /* About */
 @import 'components/about.css';
+/* Home Page */
+@import 'components/home-page.css';
