@@ -1,48 +1,76 @@
-import { keepService } from '../services/keep-service.js';
 import { eventBus } from '../../../services/event-bus-service.js';
+import modalInput from '../cmps/modal-input.cmp.js';
 
 export default {
     template: `
     <section class="note-add-container">
+
      <article v-if="isEditing">
         <input v-model="noteTitle" type="text" placeholder="Title">
-    </article>
-    <article class="flex space-between">
-        <input v-model="noteTxt" type="text" placeholder="Take a note..." @click="isEditing=true">
-        <p v-if="!isEditing" class="note-add-todo fa-solid fa-list"
-        @click="onAddTodoNote"></p>
      </article>
+
      <article class="flex space-between">
-        <div v-if="noteTxt" class="note-add-options">
+        <input v-if="!isEditingList" v-model="noteTxt" type="text" placeholder="Take a note..." @click="isEditing=true">
+        
+        <article v-if="isEditingList">
+        <input v-for="(todoItem,idx) in getTodoList" type="text" 
+        v-model="todoItem.txt" placeholder="+ New list item">
+        </article>
+
+        <p v-if="!isEditing" class="note-add-todo fa-solid fa-list"
+        @click="isEditingList=true;isEditing=true "></p>
+
+      </article>
+      <article v-if="isEditing" class="flex space-between">
+
+        <div class="note-add-options" :style="addOptionsStyle" >
             <p class="note-add-img fa-solid fa-image"
             @click="onAddImgNote"></p>
             <p class="note-add-video fa-brands fa-youtube"
-            @click="onAddVideoNote"></p>
+            @click="toggleModal=true"></p>
+          <modal-input v-if="toggleModal" @closed="toggleModal=false" @updatedVidUrl="onAddVideoNote"/>
+
             <p class="note-add-audio fa-solid fa-file-audio"
             @click="onAddAudioNote"></p>
         </div>
+
         <div>
-            <p class="note-add-txt"
-            @click="onAddTxtNote">Add</p>
+            <p class="note-add"
+            @click="onAddNote">{{getAddOrCloseText}}</p>
         </div>
-        </article>
+       </article>
+
         <input type="file" class="hide-element" ref="fileImageInput" @change="onImageSelect"/>
         <input type="file" class="hide-element" ref="fileAudioInput" @change="onAudioSelect"/>
     </section>
 `,
     data() {
         return {
-            noteTitle:'',
-            noteTxt:'',
-            isEditing:false,
+            noteTitle: '',
+            noteTxt: '',
+            isEditing: false,
+            isEditingList: false,
+            todoList: [{ txt: '', doneAt: null }],
+            toggleModal:false,
         }
     },
-    created() {},
+    created() { },
     methods: {
-        onAddTxtNote() {
+        onAddNote() {
+            if (this.addOrClose()) {
+                if (this.isEditingList) {
+                    this.AddTodoNote()
+                } else this.AddTxtNote()
+            }
+            this.resetInputs()
+        },
+        addOrClose() {
+            return (this.noteTitle || this.noteTxt)
+                || (this.todoList[0].txt)
+        },
+        AddTxtNote() {
             const noteTitle = this.noteTitle
             const noteTxt = this.noteTxt
-            if (!noteTitle) return
 
             const newNote = {
                 id: '',
@@ -63,8 +91,10 @@ export default {
         },
         onImageSelect(ev) {
             var reader = new FileReader()
-            const imgTitle = this.noteTitle
+            // sets the image title by the title input and if its empty it takes the text input
+            const imgTitle = this.noteTitle ? this.noteTitle : this.noteTxt
             const img = new Image()
+            const resetInputsFunc = this.resetInputs
             reader.onload = function (event) {
                 img.src = event.target.result
                 const newNote = {
@@ -80,34 +110,40 @@ export default {
                     },
                 }
                 eventBus.emit('save-new-note', newNote)
+                resetInputsFunc()
             }
             reader.readAsDataURL(ev.target.files[0])
         },
-        onAddVideoNote() {
-            const vidUrl = prompt('Enter Youtube video adress')
+        onAddVideoNote(vidUrl) {
             if (!vidUrl) return
+            // sets the video title by the title input and if its empty it takes the text input
+            const videoTitle = this.noteTitle ? this.noteTitle : this.noteTxt
             const newNote = {
                 id: '',
                 type: 'note-video',
                 isPinned: false,
                 info: {
-                    title: this.noteTitle,
                     url: vidUrl.replace("watch?v=", "embed/"),
+                    title: videoTitle,
                 },
                 style: {
                     backgroundColor: '#eeeeee',
                 },
             }
             eventBus.emit('save-new-note', newNote)
+            this.resetInputs()
         },
-        onAddTodoNote() {
+        AddTodoNote() {
+            if (this.todoList.length > 1)
+                this.todoList.splice(this.todoList.length - 1, 1)
+
             const newNote = {
                 id: '',
                 type: 'note-todos',
                 isPinned: false,
                 info: {
                     title: this.noteTitle,
-                    todos: [],
+                    todos: this.todoList,
                 },
                 style: {
                     backgroundColor: '#eeeeee',
@@ -120,8 +156,11 @@ export default {
         },
         onAudioSelect(ev) {
             var reader = new FileReader()
-            const audioTitle = this.noteTitle
+            // sets the audio title by the title input and if its empty it takes the text input
+            const audioTitle = this.noteTitle ? this.noteTitle : this.noteTxt
             const audio = new Audio()
+            const resetInputsFunc = this.resetInputs
+
             reader.onload = function (event) {
                 audio.src = event.target.result
                 const newNote = {
@@ -137,15 +176,52 @@ export default {
                     },
                 }
                 eventBus.emit('save-new-note', newNote)
+                resetInputsFunc()
             }
             reader.readAsDataURL(ev.target.files[0])
         },
+        resetInputs() {
+            this.isEditing = false
+            this.isEditingList = false
+            this.noteTitle = ''
+            this.noteTxt = ''
+            this.todoList = [{ txt: '', doneAt: null }]
+            this.toggleModal=false
+        },
     },
-    components: {},
-    computed: {},
+    components: {
+        modalInput
+    },
+    computed: {
+        getAddOrCloseText(){
+            return this.addOrClose()?'Add note':'Close'
+        },
+        getTodoList() {
+            const currList = this.todoList
+            const listLength = currList.length
+
+            if (currList[listLength - 1].txt)
+                currList.push({ txt: '', doneAt: null })
+            // in case their is 2 empty inputs it deletes the last input
+            if (listLength > 1) {
+                if (!currList[listLength - 1].txt && !currList[listLength - 2]?.txt)
+                    currList.splice(listLength - 1, 1)
+            }
+            return currList
+        },
+        addOptionsStyle() {
+            // In case that their is title and text he cant put an img/video/audio
+            if ((this.noteTitle && this.noteTxt) || this.isEditingList)
+                return {
+                    opacity: 0,
+                    ['pointer-events']: 'none',
+                    transition: '0.3s all',
+                }
+        }
+    },
     created() {
         const queryParams = this.$route.query
-        if(!queryParams.title&&!queryParams.txt) return
+        if (!queryParams.title && !queryParams.txt) return
         const newNote = {
             id: '',
             type: 'note-txt',
@@ -160,6 +236,6 @@ export default {
         }
         eventBus.emit('save-new-note', newNote)
         this.$router.push('/keep')//reset the params
-      },
+    },
     unmounted() { },
 };
