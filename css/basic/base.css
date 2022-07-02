@@ -17,3 +17,9 @@ iframe{
   border: none;
   border-radius: 3px;
 }
+
+audio{
+  border-radius: 5px;
+  padding: 1px 5px 0 2px ;
+  height: 40px;
+}

@@ -1,38 +1,47 @@
 import { keepService } from '../services/keep-service.js';
 import { eventBus } from '../../../services/event-bus-service.js';
-// import bookAddPreview from './book-add-preview.cmp.js';
 
 export default {
     template: `
-    <section class="note-add-container flex space-between">
-        <input ref="noteTitle" type="text" placeholder="Write the title and press the Note type.">
-        <div class="note-add-options">
-            <p class="note-add-txt fa-solid fa-font"
-            @click="onAddTxtNote"></p>
+    <section class="note-add-container">
+     <article v-if="isEditing">
+        <input v-model="noteTitle" type="text" placeholder="Title">
+    </article>
+    <article class="flex space-between">
+        <input v-model="noteTxt" type="text" placeholder="Take a note..." @click="isEditing=true">
+        <p v-if="!isEditing" class="note-add-todo fa-solid fa-list"
+        @click="onAddTodoNote"></p>
+     </article>
+     <article class="flex space-between">
+        <div v-if="noteTxt" class="note-add-options">
             <p class="note-add-img fa-solid fa-image"
             @click="onAddImgNote"></p>
             <p class="note-add-video fa-brands fa-youtube"
             @click="onAddVideoNote"></p>
-            <p class="note-add-list fa-solid fa-list"
-            @click="onAddListNote"></p>
             <p class="note-add-audio fa-solid fa-file-audio"
             @click="onAddAudioNote"></p>
         </div>
-
+        <div>
+            <p class="note-add-txt"
+            @click="onAddTxtNote">Add</p>
+        </div>
+        </article>
         <input type="file" class="hide-element" ref="fileImageInput" @change="onImageSelect"/>
         <input type="file" class="hide-element" ref="fileAudioInput" @change="onAudioSelect"/>
     </section>
 `,
     data() {
         return {
-        };
+            noteTitle:'',
+            noteTxt:'',
+            isEditing:false,
+        }
     },
-    created() {
-
-    },
+    created() {},
     methods: {
         onAddTxtNote() {
-            const noteTitle = this.$refs.noteTitle.value
+            const noteTitle = this.noteTitle
+            const noteTxt = this.noteTxt
             if (!noteTitle) return
 
             const newNote = {
@@ -41,7 +50,7 @@ export default {
                 isPinned: false,
                 info: {
                     title: noteTitle,
-                    txt: 'none yet',
+                    txt: noteTxt,
                 },
                 style: {
                     backgroundColor: '#eeeeee',
@@ -54,7 +63,7 @@ export default {
         },
         onImageSelect(ev) {
             var reader = new FileReader()
-            const imgTitle = this.$refs.noteTitle.value
+            const imgTitle = this.noteTitle
             const img = new Image()
             reader.onload = function (event) {
                 img.src = event.target.result
@@ -82,7 +91,7 @@ export default {
                 type: 'note-video',
                 isPinned: false,
                 info: {
-                    title: this.$refs.noteTitle.value,
+                    title: this.noteTitle,
                     url: vidUrl.replace("watch?v=", "embed/"),
                 },
                 style: {
@@ -91,13 +100,13 @@ export default {
             }
             eventBus.emit('save-new-note', newNote)
         },
-        onAddListNote() {
+        onAddTodoNote() {
             const newNote = {
                 id: '',
                 type: 'note-todos',
                 isPinned: false,
                 info: {
-                    title: this.$refs.noteTitle.value,
+                    title: this.noteTitle,
                     todos: [],
                 },
                 style: {
@@ -111,7 +120,7 @@ export default {
         },
         onAudioSelect(ev) {
             var reader = new FileReader()
-            const audioTitle = this.$refs.noteTitle.value
+            const audioTitle = this.noteTitle
             const audio = new Audio()
             reader.onload = function (event) {
                 audio.src = event.target.result
@@ -132,9 +141,7 @@ export default {
             reader.readAsDataURL(ev.target.files[0])
         },
     },
-    components: {
-        // bookAddPreview
-    },
+    components: {},
     computed: {},
     created() {
         const queryParams = this.$route.query
@@ -145,6 +152,7 @@ export default {
             isPinned: false,
             info: {
                 title: queryParams.title,
+                txt: queryParams.txt,
             },
             style: {
                 backgroundColor: '#eeeeee',
