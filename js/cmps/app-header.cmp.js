@@ -8,7 +8,7 @@ export default {
       <ul :class="[expand,'main-navbar']">
         <router-link @click="toggleMenu(false)" :to="sendTo(opt)" v-for="(opt,i) in options" :key="opt">{{opt.replace(opt[0],opt[0].toUpperCase())}}</router-link>
       </ul>
-      <button @click="toggleMenu" class="btn menu-toggle">{{menuSign}}</button>
+      <button @click="toggleMenu" class="btn menu-toggle" :class="menuSign"></button>
     </header>
  `,
   data() {
@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     menuSign() {
-      return this.isOpen ? 'X' : '☰';
+      return this.isOpen ? 'fa-solid fa-xmark menu-open' : 'fa-solid fa-bars';
     },
     menuOpen() {
       return this.isOpen ? 'menu-open' : '';

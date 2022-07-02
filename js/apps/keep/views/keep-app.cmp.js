@@ -37,13 +37,17 @@ export default {
         this.notes.unshift(note)
         keepService.saveNotes(this.notes)
         eventBus.emit('show-msg', {
-          txt: 'Note Saved!',
+          txt: 'Note Added!',
           type: 'success',
         })
       })
     },
     updateNote(note) {
       keepService.save(note).then()
+      eventBus.emit('show-msg', {
+        txt: 'Note Updated!',
+        type: 'success',
+      })
     },
     removeNote(noteToremove) {
       keepService.remove(noteToremove.id).then(() => {
