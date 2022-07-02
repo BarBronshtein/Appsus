@@ -1,6 +1,6 @@
 export default {
   template: `
-  <section @mouseenter="toggleMenu" @mouseleave="toggleMenu"  class="email-folder-list flex flex-column">
+  <section @mouseenter="toggleMenu" @mouseleave="toggleMenu"  :class="[expand,'email-folder-list flex flex-column']">
           <a @click="$emit('openModal')" class="btn compose-btn">
             <i class="fa-solid fa-circle-plus"></i>
           <span>Compose</span>
@@ -38,6 +38,9 @@ export default {
         if (!email.isRead) return acc + 1;
         else return acc;
       }, 0);
+    },
+    expand() {
+      return this.isOpen ? 'email-nav-open' : '';
     },
   },
   unmounted() {},

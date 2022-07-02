@@ -31,12 +31,32 @@
   .email-folder-list > a > span {
     display: none;
   }
+  .email-nav-open.email-folder-list {
+    width: 150px;
+  }
+
+  .email-nav-open.email-folder-list .unread-emails > :first-child,
+  .email-nav-open.email-folder-list .email-status-btn > :first-child,
+  .email-nav-open.email-folder-list .btn.compose-btn > :first-child {
+    margin-inline-end: 0.7rem;
+  }
+  .email-nav-open.email-folder-list > a {
+    justify-content: flex-start;
+  }
+
+  .email-nav-open.email-folder-list > a > small,
+  .email-nav-open.email-folder-list > a > span {
+    display: inline;
+  }
+
   .email-filter {
     flex-direction: column;
   }
   .email-filter > :first-child {
     margin: 0;
   }
+
+  /* Folder List */
 }
 
 @media screen and (max-width: 480px) {
