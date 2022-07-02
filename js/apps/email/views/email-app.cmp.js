@@ -33,7 +33,7 @@ export default {
   },
   created() {
     emailService.query().then(emails => (this.emails = emails));
-
+    document.body.classList.add('hide-footer');
     this.unsubscribe = eventBus.on('remove-email', this.removeEmail);
   },
   methods: {
@@ -61,10 +61,17 @@ export default {
           this.emails = emails;
           if (email.status === 'draft') {
             this.showModal = true;
-            eventBus.emit('show-msg', {
-              txt: 'Saved as draft',
-              type: 'success',
-            });
+            eventBus
+              .emit('show-msg', {
+                txt: 'Saved as draft',
+                type: 'success',
+              })
+              .catch(
+                eventBus.emit('show-msg', {
+                  txt: `Failed to save as draft`,
+                  type: 'error',
+                })
+              );
           } else {
             this.showModal = false;
             eventBus.emit('show-msg', {
@@ -119,6 +126,7 @@ export default {
       const regex = new RegExp(txt, 'i');
       let filteredEmails = this.emails;
       2;
+
       if (txt)
         // Filter by text user inputs and checks if exists in the subject or from or to the emails was sent
         filteredEmails = filteredEmails.filter(
@@ -173,8 +181,10 @@ export default {
     emailCompose,
     emailDetails,
   },
+
   unmounted() {
-    this.unsubscribe();
+    if (this.unsubscribe) this.unsubscribe();
+    document.body.classList.remove('hide-footer');
   },
   watch: {
     '$route.params': {
