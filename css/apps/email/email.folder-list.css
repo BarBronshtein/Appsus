@@ -46,6 +46,9 @@
 .btn.compose-btn {
   margin-top: 0.8rem;
 }
+.btn.compose-btn > :first-child {
+  margin-inline-end: 0.7rem;
+}
 .btn.compose-btn:hover {
   background-color: #fce8e6;
 }

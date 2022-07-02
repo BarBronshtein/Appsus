@@ -1,0 +1,45 @@
+@media screen and (max-width: 780px) {
+  .email-preview {
+    flex-direction: column;
+  }
+  .email-app {
+    left: 50px;
+    width: calc(100% - 50px);
+  }
+  .email-folder-list {
+    width: 50px;
+  }
+  .email-folder-list > a {
+    justify-content: center;
+  }
+  .email-folder-list > a > i.fa-solid,
+  .btn.compose-btn > :first-child {
+    margin: 0;
+  }
+  .email-folder-list > a > small,
+  .email-folder-list > a > span {
+    display: none;
+  }
+  .email-filter {
+    flex-direction: column;
+  }
+  .email-filter > :first-child {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .details {
+    flex-direction: column;
+  }
+  .app-header .logo,
+  .app-header .btn.menu-toggle {
+    margin: 0 1rem;
+  }
+  .email-filter > :first-child {
+    flex-direction: column;
+  }
+  .email-filter > :first-child > :first-child {
+    margin: 0;
+  }
+}
