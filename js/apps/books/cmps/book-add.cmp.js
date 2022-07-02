@@ -5,7 +5,7 @@ export default {
     <section class="book-add">
         <form @submit.prevent="getBooks" >
             <input placeholder="Search book to add..." type="search" v-model="searchKey">
-            <button class="btn search btn">Search</button>
+            <button class="btn search-btn">Search</button>
         </form>
         <ul v-if="opts?.length">
             <li v-for="opt in opts" :key="opt.id"><book-add-preview @addedBook="addBookToList" :opt="opt"/></li>
