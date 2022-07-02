@@ -187,7 +187,7 @@ export default {
           params: { status, emailId },
           query: { title, txt },
         } = this.$route;
-        if (title && txt) {
+        if (title || txt) {
           this.showModal = true;
           this.noteDetails = { title, txt };
         }
