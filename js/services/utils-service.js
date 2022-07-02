@@ -32,14 +32,16 @@ function displayByCurrency(currency) {
   });
 }
 
-function debounce (fn, delay) {
-  var timeoutID = null
-  return function () {
-    clearTimeout(timeoutID)
-    var args = arguments
-    var that = this
-    timeoutID = setTimeout(function () {
-      fn.apply(that, args)
-    }, delay)
+function debounce(func, wait) {
+  console.log(wait);
+  let timeout;
+  return function executedFunction(...args) {
+      const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+      };
+
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
   }
 }
