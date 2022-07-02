@@ -54,6 +54,7 @@ export default {
       this.emails.splice(idx, 1, email);
     },
     saveEmail(email) {
+      console.log(email);
       emailService
         .save(email)
         .then(emailService.query)
@@ -61,17 +62,10 @@ export default {
           this.emails = emails;
           if (email.status === 'draft') {
             this.showModal = true;
-            eventBus
-              .emit('show-msg', {
-                txt: 'Saved as draft',
-                type: 'success',
-              })
-              .catch(
-                eventBus.emit('show-msg', {
-                  txt: `Failed to save as draft`,
-                  type: 'error',
-                })
-              );
+            eventBus.emit('show-msg', {
+              txt: 'Saved as draft',
+              type: 'success',
+            });
           } else {
             this.showModal = false;
             eventBus.emit('show-msg', {
