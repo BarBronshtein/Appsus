@@ -3,7 +3,7 @@ export default {
  <section class="home-page flex flex-column space-around">
     <h1>Welcome to Appsus</h1>
     <section class="home-apps">
-      <article class="flex space-around">
+      <article class="above-apps">
       <div>
         <img @click="$router.push('/book')" src="img/home-imgs/books.png" alt="books"> 
         </div>
