@@ -9,8 +9,8 @@ export default {
       <div class="about-card-details flex flex-column">
        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea nulla aliquam quibusdam, culpa accusamus id, perspiciatis voluptate mollitia ratione minus quaerat deserunt. Vel, eius iure alias dolores placeat quisquam aut, atque explicabo dolorem aspernatur doloremque cupiditate perspiciatis. Quis perferendis </p>
         <div class="icons flex align-center justify-center">
-        <a href="" target="_blank" class="fa-brands fa-github p2"></a>
-        <a href="" target="_blank" class="fa-brands fa-linkedin p2"></a> 
+        <a href="https://github.com/BnayaCohen" target="_blank" class="fa-brands fa-github p2"></a>
+        <a href="https://www.linkedin.com" target="_blank" class="fa-brands fa-linkedin p2"></a> 
         </div>
       </div>
     </div>
@@ -21,8 +21,8 @@ export default {
       <div class="about-card-details">
        <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt voluptatem temporibus eius nisi, aut nihil ex, accusamus praesentium animi quidem distinctio vel sequi expedita, autem molestias aliquam reiciendis quibusdam. Aspernatur cum amet labore sapiente dolores eius </p>
        <div class="icons flex align-center justify-center">
-        <a href="" target="_blank" class="fa-brands fa-github p2"></a>
-        <a href="" target="_blank" class="fa-brands fa-linkedin p2"></a> 
+        <a href="https://github.com/BarBronshtein" target="_blank" class="fa-brands fa-github p2"></a>
+        <a href="https://www.linkedin.com/in/bar-bronshtein-52070622b/" target="_blank" class="fa-brands fa-linkedin p2"></a> 
         </div>
       </div>
     </div>
