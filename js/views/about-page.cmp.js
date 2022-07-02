@@ -4,7 +4,7 @@ export default {
     <h2 class="text-align-c">About us</h2>
     <div class="article about-card flex">
       <div class="img-container">
-        <img src="../../img/about-imgs/about-img2.jpg" alt="">
+        <img src="img/about-imgs/about-img2.jpg" alt="Bnaya">
       </div>
       <div class="about-card-details flex flex-column">
        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea nulla aliquam quibusdam, culpa accusamus id, perspiciatis voluptate mollitia ratione minus quaerat deserunt. Vel, eius iure alias dolores placeat quisquam aut, atque explicabo dolorem aspernatur doloremque cupiditate perspiciatis. Quis perferendis </p>
@@ -16,7 +16,7 @@ export default {
     </div>
     <div class="article flex about-card row-reverse">
       <div class="img-container">
-        <img src="../../img/about-imgs/about-img.jpeg">
+        <img src="img/about-imgs/about-img.jpeg" alt="Bar">
       </div>
       <div class="about-card-details">
        <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt voluptatem temporibus eius nisi, aut nihil ex, accusamus praesentium animi quidem distinctio vel sequi expedita, autem molestias aliquam reiciendis quibusdam. Aspernatur cum amet labore sapiente dolores eius </p>
