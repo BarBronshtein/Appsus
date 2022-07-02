@@ -15,14 +15,15 @@ export default {
       </li>
     </ul>
     <form @submit.prevent="addTodo" >
-    <input ref="todoInput" type="text" placeholder="Type your task here...">
+    <input v-model="todoInput" type="text" placeholder="Type your task here...">
     </form>
     <note-actions :note="note"/> 
   </article>
   `,
   data() {
     return {
-    };
+      todoInput:''
+    }
   },
   methods: {
     updateTodo(e,idx){
@@ -48,7 +49,7 @@ export default {
       }
     },
     addTodo() {
-      const newTodoTxt = this.$refs.todoInput.value
+      const newTodoTxt = this.todoInput
       if (!newTodoTxt) return
       const newTodo = {
         txt: newTodoTxt,
@@ -56,7 +57,7 @@ export default {
       }
       this.note.info.todos.push(newTodo)
       keepService.save(this.note)
-      this.$refs.todoInput.value = ''
+      this.todoInput = ''
     }
   },
   computed: {
