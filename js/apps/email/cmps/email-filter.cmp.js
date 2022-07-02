@@ -10,7 +10,7 @@ export default {
         <option v-for="(opt,i) in options" :key="i" :value="opt">{{opt.replace(opt[0], opt[0].toUpperCase())}}</option>
       </select>
     </div>
-    <div class="email-sort-by">
+    <div class="email-sort-by flex align-center justify-center">
       <i @click="setSort" class="fa-solid fa-sort">Date</i>
       <i @click="setSort" class="fa-solid fa-sort">Title</i>
     </div>

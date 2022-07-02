@@ -2,6 +2,17 @@
   .email-preview {
     flex-direction: column;
   }
+  .details > :first-child {
+    margin-inline-end: 2rem;
+  }
+
+  .email-sort-by {
+    font-size: 0.8rem;
+  }
+  .email-sort-by > :first-child {
+    margin-inline-end: 6rem;
+  }
+
   .email-app {
     left: 50px;
     width: calc(100% - 50px);
@@ -31,6 +42,9 @@
 @media screen and (max-width: 480px) {
   .details {
     flex-direction: column;
+  }
+  .email-sort-by > :first-child {
+    margin-inline-end: 2rem;
   }
   .app-header .logo,
   .app-header .btn.menu-toggle {
