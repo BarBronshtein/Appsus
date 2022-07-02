@@ -22,5 +22,15 @@
   margin-bottom: 2rem;
 }
 .about-card .about-card-details {
-  margin: 0 2rem;
+  margin: 1rem;
+}
+
+.fa-github {
+  color: #6e5494;
+}
+.fa-linkedin {
+  color: #0072b1;
+}
+.icons a {
+  font-size: 2rem;
 }
