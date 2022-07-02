@@ -4,7 +4,7 @@ export default {
     props: ['note'],
     template: `<article class="note-container">
       <!-- MAP-->
-    <h3>{{note.info.title}}</h3>
+    <h4>{{note.info.title}}</h4>
         <note-actions :note="note"/>          
     </article>
     `,
