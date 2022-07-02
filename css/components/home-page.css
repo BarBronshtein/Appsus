@@ -1,0 +1,20 @@
+.home-page {
+    text-align: center;
+    height: calc(100vh - 135px);
+}
+
+.home-apps img {
+    width: 220px;
+    height: 100%;
+    padding: 10px;
+    cursor: pointer;
+    object-fit: contain;
+    margin: 0 20px;
+}
+
+.home-apps img:hover {
+    transform: scale(1.02);
+    transition: .2s;
+    background-color: rgba(93, 128, 177, 0.30);
+    border-radius: 5px;
+}
