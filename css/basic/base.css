@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family:roboto;
+  font-family: roboto;
   margin: 0;
   background-color: #ffffff;
 }
@@ -13,13 +13,19 @@ a {
   color: #333;
 }
 
-iframe{
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+iframe {
   border: none;
   border-radius: 3px;
 }
 
-audio{
+audio {
   border-radius: 5px;
-  padding: 1px 5px 0 2px ;
+  padding: 1px 5px 0 2px;
   height: 40px;
 }

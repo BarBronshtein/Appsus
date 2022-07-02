@@ -1,0 +1,26 @@
+.about-page {
+  background-color: #eee;
+}
+
+.about-page > :nth-child(2) > .img-container > img {
+  margin-top: 0.8rem;
+}
+
+.about-card {
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  max-width: 760px;
+}
+
+.about-card > .img-container img {
+  width: 200px;
+  border-radius: 50%;
+  margin: 0 2rem;
+}
+.about-card.row-reverse {
+  margin-bottom: 2rem;
+}
+.about-card .about-card-details {
+  margin: 0 2rem;
+}

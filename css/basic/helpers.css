@@ -91,3 +91,6 @@
 .text-align-r {
   text-align: right;
 }
+.flex.row-reverse {
+  flex-direction: row-reverse;
+}

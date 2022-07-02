@@ -45,8 +45,8 @@ export default {
       const { to } = this.sendEmail;
       this.sendEmail.to = to === email ? this.email?.from : to;
     });
-    const { to, subject, body } = this.sendEmail;
     this.interval = setInterval(() => {
+      const { to, subject, body } = this.sendEmail;
       // If nothing was written exit
       if (!to && !subject && !body) return;
       const newEmail = this.sendEmail;

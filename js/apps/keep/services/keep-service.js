@@ -29,7 +29,7 @@ function save(note) {
   else return storageService.post(NOTES_KEY, note);
 }
 
-function saveNotes(notes){
+function saveNotes(notes) {
   utilService.saveToStorage(NOTES_KEY, notes);
 }
 
@@ -43,7 +43,7 @@ function _createNotes() {
         isPinned: true,
         info: {
           title: 'Fullstack Me Baby!',
-          txt:'Im not sure'
+          txt: 'Im not sure',
         },
         style: {
           backgroundColor: '#25370d',
@@ -54,7 +54,7 @@ function _createNotes() {
         type: 'note-img',
         isPinned: false,
         info: {
-          url: '../keep-images/nature.jpg',
+          url: '../../../../img/keep-images/nature.jpg',
           title: 'Bobi and Me',
         },
         style: {
@@ -82,7 +82,7 @@ function _createNotes() {
           backgroundColor: '#02c45d',
         },
       },
-    ]
-    utilService.saveToStorage(NOTES_KEY, notes)
+    ];
+    utilService.saveToStorage(NOTES_KEY, notes);
   }
 }

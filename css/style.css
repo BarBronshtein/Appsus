@@ -29,11 +29,5 @@
 @import 'apps/keep/components/note-container.css';
 @import 'apps/keep/components/note-filter.css';
 @import 'apps/keep/mq/mq.css';
-
-.img-container {
-  margin-top: 2rem;
-}
-
-.img-container > :last-child {
-  margin-inline-start: 1rem;
-}
+/* About */
+@import 'components/about.css';
