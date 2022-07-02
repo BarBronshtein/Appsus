@@ -1,6 +1,6 @@
 export default {
   template: `
-  <section class="email-folder-list flex flex-column">
+  <section @mouseenter="toggleMenu" @mouseleave="toggleMenu"  class="email-folder-list flex flex-column">
           <a @click="$emit('openModal')" class="btn compose-btn">
             <i class="fa-solid fa-circle-plus"></i>
           <span>Compose</span>
@@ -27,6 +27,9 @@ export default {
   methods: {
     show(opt) {
       if (opt === this.$route.params.status) return 'email-active';
+    },
+    toggleMenu() {
+      this.isOpen = !this.isOpen;
     },
   },
   computed: {
