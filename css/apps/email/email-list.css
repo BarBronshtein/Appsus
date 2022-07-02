@@ -1,5 +1,5 @@
 .email-list {
-  height: calc(100% - 1.5rem);
+  height: 100%;
 }
 
 .email-list > ul > li {
