@@ -48,8 +48,8 @@ export default {
     },
     computed: {
         noteDetail() {
-            const title = this.note.info.title
-            const txt = 'hello'
+            let { title, txt } = this.note.info
+            txt = txt ? txt : this.note.info.url
             return '?' + new URLSearchParams({ title, txt }).toString()
         }
     },
