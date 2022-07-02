@@ -3,6 +3,10 @@
     height: calc(100vh - 135px);
 }
 
+.home-page h1{
+ font-size: 1.5rem;
+}
+
 .above-apps{
     display: flex;
     justify-content: space-around;
