@@ -33,7 +33,7 @@ export default {
   },
   created() {
     emailService.query().then(emails => (this.emails = emails));
-
+    document.body.classList.add('hide-footer');
     this.unsubscribe = eventBus.on('remove-email', this.removeEmail);
   },
   methods: {
@@ -126,6 +126,7 @@ export default {
       const regex = new RegExp(txt, 'i');
       let filteredEmails = this.emails;
       2;
+
       if (txt)
         // Filter by text user inputs and checks if exists in the subject or from or to the emails was sent
         filteredEmails = filteredEmails.filter(
@@ -180,9 +181,7 @@ export default {
     emailCompose,
     emailDetails,
   },
-  created() {
-    document.body.classList.add('hide-footer');
-  },
+
   unmounted() {
     if (this.unsubscribe) this.unsubscribe();
     document.body.classList.remove('hide-footer');
