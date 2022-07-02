@@ -159,7 +159,7 @@ function _createNotes() {
       type: 'note-img',
       isPinned: false,
       info: {
-        url: '../../../../img/keep-images/india.jpg',
+        url: 'img/keep-images/india.jpg',
         title: 'I want to be there',
       },
       style: {
