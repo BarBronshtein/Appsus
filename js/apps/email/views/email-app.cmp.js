@@ -165,6 +165,7 @@ export default {
         filteredEmails = filteredEmails.sort(
           (a, b) => a.subject.localeCompare(b.subject) * this.sortBy.state
         );
+
       return filteredEmails;
     },
   },

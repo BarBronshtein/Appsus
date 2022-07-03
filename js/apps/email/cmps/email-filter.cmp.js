@@ -11,8 +11,8 @@ export default {
       </select>
     </div>
     <div class="email-sort-by flex align-center justify-center">
-      <span><i @click="setSort" class="fa-solid fa-clock"></i>Date</span>
-      <span><i @click="setSort" class="fa-solid fa-sort"></i>Title</span>
+      <span @click="setSort"><i  class="fa-solid fa-clock"></i>Date</span>
+      <span  @click="setSort"><i class="fa-solid fa-sort"></i>Title</span>
     </div>
  </section>
 `,
