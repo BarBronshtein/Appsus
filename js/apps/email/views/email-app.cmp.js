@@ -15,7 +15,7 @@ export default {
       <email-details @markAsRead="updateEmails" v-if="routeEmailId"/>
     </section>
     <aside>
-        <email-compose @clearProps=clearPassedProps :note="noteDetails" :email="email"  @closeForm="closeModal"  @saveAsDraft="saveEmail" @composedEmail="saveEmail" v-if="showModal" />
+        <email-compose @clearProps="clearPassedProps" :note="noteDetails" :email="email"  @closeForm="closeModal"  @saveAsDraft="saveEmail" @composedEmail="saveEmail" v-if="showModal" />
     </aside>
   
 `,
